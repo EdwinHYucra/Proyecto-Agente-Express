@@ -1,0 +1,4 @@
+[09-Jul-2024 07:56:16 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/factura3/agenteexpress.com/Pages/Streaming.php on line 2
+[12-Dec-2025 20:54:02 UTC] PHP Warning:  Unknown: Failed to open stream: No such file or directory in Unknown on line 0
+[12-Dec-2025 20:54:02 UTC] PHP Warning:  Unknown: Failed to open stream: No such file or directory in Unknown on line 0
+[12-Dec-2025 20:54:02 UTC] PHP Fatal error:  Failed opening required '/usr/local/php-monitors/monitor_php_connections.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in Unknown on line 0

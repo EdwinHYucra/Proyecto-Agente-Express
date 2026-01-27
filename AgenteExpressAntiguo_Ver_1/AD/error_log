@@ -1,0 +1,51 @@
+[03-May-2024 23:13:01 UTC] PHP Warning:  Undefined array key "txtnombre" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 3
+[03-May-2024 23:13:01 UTC] PHP Warning:  Undefined array key "txtapellido" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 4
+[03-May-2024 23:13:01 UTC] PHP Warning:  Undefined array key "prefijo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 5
+[03-May-2024 23:13:01 UTC] PHP Warning:  Undefined array key "txtnumero" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 6
+[03-May-2024 23:13:01 UTC] PHP Warning:  Undefined array key "txtcorreo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 7
+[03-May-2024 23:13:01 UTC] PHP Warning:  Undefined array key "txtmensaje" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 8
+[03-May-2024 23:19:53 UTC] PHP Warning:  Undefined array key "txtnombre" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 3
+[03-May-2024 23:19:53 UTC] PHP Warning:  Undefined array key "txtapellido" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 4
+[03-May-2024 23:19:53 UTC] PHP Warning:  Undefined array key "prefijo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 5
+[03-May-2024 23:19:53 UTC] PHP Warning:  Undefined array key "txtnumero" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 6
+[03-May-2024 23:19:53 UTC] PHP Warning:  Undefined array key "txtcorreo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 7
+[03-May-2024 23:19:53 UTC] PHP Warning:  Undefined array key "txtmensaje" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 8
+[03-May-2024 23:51:57 UTC] PHP Warning:  Undefined array key "txtnombre" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 3
+[03-May-2024 23:51:57 UTC] PHP Warning:  Undefined array key "txtapellido" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 4
+[03-May-2024 23:51:57 UTC] PHP Warning:  Undefined array key "prefijo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 5
+[03-May-2024 23:51:57 UTC] PHP Warning:  Undefined array key "txtnumero" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 6
+[03-May-2024 23:51:57 UTC] PHP Warning:  Undefined array key "txtcorreo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 7
+[03-May-2024 23:51:57 UTC] PHP Warning:  Undefined array key "txtmensaje" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 8
+[08-May-2024 21:06:39 UTC] PHP Warning:  Undefined array key "txtnombre" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 3
+[08-May-2024 21:06:39 UTC] PHP Warning:  Undefined array key "txtapellido" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 4
+[08-May-2024 21:06:39 UTC] PHP Warning:  Undefined array key "prefijo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 5
+[08-May-2024 21:06:39 UTC] PHP Warning:  Undefined array key "txtnumero" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 6
+[08-May-2024 21:06:39 UTC] PHP Warning:  Undefined array key "txtcorreo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 7
+[08-May-2024 21:06:39 UTC] PHP Warning:  Undefined array key "txtmensaje" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 8
+[08-May-2024 21:07:15 UTC] PHP Warning:  Undefined array key "txtnombre" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 3
+[08-May-2024 21:07:15 UTC] PHP Warning:  Undefined array key "txtapellido" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 4
+[08-May-2024 21:07:15 UTC] PHP Warning:  Undefined array key "prefijo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 5
+[08-May-2024 21:07:15 UTC] PHP Warning:  Undefined array key "txtnumero" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 6
+[08-May-2024 21:07:15 UTC] PHP Warning:  Undefined array key "txtcorreo" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 7
+[08-May-2024 21:07:15 UTC] PHP Warning:  Undefined array key "txtmensaje" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 8
+[09-May-2024 20:19:24 UTC] PHP Warning:  mysqli_connect(): php_network_getaddresses: getaddrinfo for https failed: Name or service not known in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 31
+[27-Aug-2024 17:55:12 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/factura3/agenteexpress.com/AD/formulario_contacto.php:43
+Stack trace:
+#0 /home/factura3/agenteexpress.com/AD/formulario_contacto.php(43): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 43
+[30-Aug-2024 19:57:55 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:02:25 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:02:55 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:03:14 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:04:19 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:05:01 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:05:57 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:10:18 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:10:33 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:14:08 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:14:16 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 19
+[30-Aug-2024 20:16:23 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 18
+[30-Aug-2024 20:16:35 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 18
+[30-Aug-2024 20:18:29 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 18
+[30-Aug-2024 20:22:28 UTC] PHP Parse error:  syntax error, unexpected variable "$jsontexto" in /home/factura3/agenteexpress.com/AD/formulario_contacto.php on line 18

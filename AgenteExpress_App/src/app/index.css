@@ -1,0 +1,22 @@
+:root{
+  --primary:#0A4C86;        /* azul fuerte */
+  --secondary:#1E88E5;      /* azul medio */
+  --accent:#2BBBAD;         /* verde claro (pedido) */
+  --bg:#F5F7FA;
+  --text:#1F2937;
+  --muted:#6B7280;
+  --card:#FFFFFF;
+  --border:#E5E7EB;
+  --radius:18px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1,h2,h3{ margin:0; }

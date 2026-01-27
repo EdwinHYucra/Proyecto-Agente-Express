@@ -1,0 +1,1292 @@
+<?php
+session_start();
+
+// Comprobar si el usuario está autenticado
+if (!isset($_SESSION['correo'])) {
+    header("Location: ../../login.html");
+    exit();
+}
+
+$correo = $_SESSION['correo'];
+$nombre = $_SESSION['nombre'];
+$cod_agen = $_SESSION['cod_agen'];
+
+include_once("php/consultacomisiones.php");
+$datacomisiones = ObtenerComisiones();
+include_once("php/Utilitarios.php");
+
+$dataAfiliado = buscarAfiliado($cod_agen);
+//echo $dataAfiliado["data"]["fecha_afil"];calcularMembresia
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agente Express</title>
+
+    <!--CSS Personalizado-->
+    <link rel="stylesheet" href="/Agente/css/style.css" />
+    <link rel="stylesheet" hreft="css/datatableadd.css" />
+    <link rel="stylesheet" href="css/range.css" />
+    <link rel="icon" href="../IMG/icon.png" type="image/png">
+
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    
+    <!--Char Libreria-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!--JQuery-->
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    
+    <!--DataTable-->
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.4/css/responsive.bootstrap5.css" />
+    
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap 5 Bundle (incluye Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--Js Personalizado-->
+    <script src="js/utilitarios.js"></script>
+</head>
+
+<body>
+    
+    <!--Aqui va chatwidget-->
+    <script 
+        src="https://widgets.leadconnectorhq.com/loader.js"  
+        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" 
+        data-widget-id="68320baee4bd844ada2b474b"   > 
+    </script>
+    
+    <div class="container-fluid p-0 d-sm-flex flex-sm-row ">
+        <!--Menu Mobile-->
+        <div class="d-flex justify-content-between align-items-center py-1 d-sm-flex flex-sm-column justify-content-sm-start gap-4" style="background-color: rgb(0, 81, 153);">
+            <nav class="navbar d-block d-sm-none">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#Nav-desplegable" aria-controls="Nav-desplegable">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+            <div class="text-center align-content-center">
+                <img src="../../IMG/Logo-Oficial.png" class="img-fluid" style="max-height: 72px;" alt="..." >
+            </div>
+            <div class="text-center align-content-center me-3 d-sm-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="img-fluid" width="40" height="40" fill="currentColor"
+                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                    <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                </svg>
+            </div>
+
+
+            <!-- Nav bar mobile Menu  -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="Nav-desplegable"
+                aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+                    </button>
+                </div>
+                <div class="offcanvas-body" style="background-color: rgb(0, 81, 153);">
+
+                    <!-- Nav bar mobile con opciones -->
+
+                    <ul class="list-Option" id="myTab" role="tablist">
+                        <li class="nav-item Option" role="presentation">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M4 20v-9.375L2.2 12l-1.175-1.575l11-8.425L23 10.425l-.4.525q-1.125-.775-2.475-.925t-2.625.35q-1.5-.575-3.088-.262t-2.787 1.512t-1.513 2.788t.263 3.087q-.25.6-.325 1.225T10.025 20zm13.5 2.375q-1.05.725-2.312.613t-2.163-1.013t-1.012-2.162t.612-2.313q-.725-1.05-.612-2.312t1.012-2.163t2.163-1.012t2.312.612q1.05-.725 2.313-.612t2.162 1.012t1.013 2.163t-.613 2.312q.725 1.05.613 2.313t-1.013 2.162t-2.162 1.013t-2.313-.613m0-3.625q.525 0 .888-.363t.362-.887t-.363-.888t-.887-.362t-.888.363t-.362.887t.363.888t.887.362" />
+                            </svg>
+                            <a class="nav-link active" id="btnInicio" data-bs-toggle="tab" href="#dashboard-tab-pane"
+                                role="tab" aria-controls="dashboard-tab-pane" aria-selected="true">
+                                Inicio
+                            </a>
+                        </li>
+                        <!---->
+                        <li class="nav-item Option" role="presentation">
+                            <a class="nav-link text-white d-flex justify-content-between align-items-center"
+                                data-bs-toggle="collapse" href="#submenuOperaciones" role="button" aria-expanded="false"
+                                aria-controls="submenuOperaciones">
+                                <div>
+                                    <i class="fa fa-exchange-alt fa-lg me-2 "></i> Realizar Operación
+                                </div>
+                                <i class="fa fa-chevron-down ms-3 "></i>
+                            </a>
+                        </li>
+                        <div class="collapse ps-4 flex-column" id="submenuOperaciones">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" id="btn-Operacion-CashOutM" data-bs-toggle="tab"
+                                    href="#cashout-tab">Cash Out</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="btn-Operacion-CashInM" class="nav-link text-white" data-bs-toggle="tab" href="#cashout-tab">Cash In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" data-bs-toggle="tab" href="#recargas-tab">Recargas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" data-bs-toggle="tab" href="#pdigital-tab">Productos
+                                    Digitales</a>
+                            </li>
+                        </div>
+                        <li class="nav-item Option" role="presentation">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16">
+                                <path fill="currentColor" fill-rule="evenodd"
+                                    d="M11.5 4.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 1.5a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5m-.75 1.25a.75.75 0 0 1 .75-.75c1.238 0 2.363.385 3.178.962C15.496 8.04 16 8.81 16 9.577a1.923 1.923 0 0 1-1.923 1.923h-.327a.75.75 0 0 1 0-1.5h.327c.234 0 .423-.19.423-.423c0-.105-.099-.474-.688-.89C13.257 8.293 12.437 8 11.5 8a.75.75 0 0 1-.75-.75M2.188 8.686C2.743 8.294 3.563 8 4.5 8a.75.75 0 0 0 0-1.5c-1.238 0-2.363.385-3.178.962C.504 8.04 0 8.81 0 9.577C0 10.639.861 11.5 1.923 11.5h.327a.75.75 0 0 0 0-1.5h-.327a.423.423 0 0 1-.423-.423c0-.105.099-.474.688-.89ZM4.5 4.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 1.5a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5m6.25 3.5h-.25V9a2.5 2.5 0 1 0-5 0v.5h-.25c-.69 0-1.25.56-1.25 1.25v3c0 .69.56 1.25 1.25 1.25h5.5c.69 0 1.25-.56 1.25-1.25v-3c0-.69-.56-1.25-1.25-1.25M9 9v.5H7V9a1 1 0 1 1 2 0m-3.5 2v2.5h5V11z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <a class="nav-link" id="btnFuncOperativas" data-bs-toggle="tab" href="#foperativas-tab-pane"
+                                role="tab" aria-controls="foperativas-tab-pane" aria-selected="false">Funciones
+                                Operativas</a>
+                        </li>
+                        <li class="nav-item Option" role="presentation">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M18.5 17.8v-2.3q0-.2-.15-.35T18 15t-.35.15t-.15.35v2.3q0 .2.075.375t.225.325l1.525 1.525q.15.15.35.15t.35-.15t.15-.35t-.15-.35zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v5q0 .425-.288.713T20 11t-.712-.288T19 10V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm0-3v1V5v6.075V11zm2-2q0 .425.288.713T8 17h2.075q.425 0 .713-.288t.287-.712t-.287-.712t-.713-.288H8q-.425 0-.712.288T7 16m0-4q0 .425.288.713T8 13h5q.425 0 .713-.288T14 12t-.288-.712T13 11H8q-.425 0-.712.288T7 12m0-4q0 .425.288.713T8 9h8q.425 0 .713-.288T17 8t-.288-.712T16 7H8q-.425 0-.712.288T7 8m11 15q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23" />
+                            </svg>
+                            <a class="nav-link" id="btnResumenOperacion" data-bs-toggle="tab"
+                                href="#resumen-operaciones-tab-pane" role="tab"
+                                aria-controls="resumen-operaciones-tab-pane" aria-selected="false">Historial de
+                                Operaciónes</a>
+                        </li>
+                        <li class="nav-item Option" role="presentation">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
+                                <path fill="currentColor"
+                                    d="m16.154 3.901l-2.492 2.492l1.768 1.768a1.5 1.5 0 0 1 .293 1.707l1.357 1.358l1.939-1.952a6.07 6.07 0 0 1 1.715-5.567l.003-.003a6.062 6.062 0 0 1 5.65-1.53c1.214.296 1.617 1.8.75 2.668L24.88 7.1l1.026 1.026l2.254-2.254c.89-.908 2.384-.435 2.672.745l.001.003a6.061 6.061 0 0 1-7.122 7.371l-1.925 1.94l7.16 7.16a4 4 0 1 1-5.657 5.656l-7.14-7.14l-1.375 1.384a6.07 6.07 0 0 1-1.727 5.512l-.003.003a6.062 6.062 0 0 1-5.651 1.53c-1.213-.297-1.616-1.302-.75-2.668l2.259-2.258l-1.026-1.026l-2.253 2.253c-.89.909-2.385.436-2.673-.745l-.001-.003A6.061 6.061 0 0 1 6.8 18.444a1.23 1.23 0 0 1-.096-.087L.366 12.02a1.251 1.251 0 0 1 0-1.768l.788-.788a3 3 0 0 1 2.52-.852a2 2 0 0 1 .089-.1l7.073-7.073a1.5 1.5 0 0 1 1.219-.43l3.2.338a1.5 1.5 0 0 1 .904 2.555zM5.53 9.575l3.894 3.888l4.242-4.243l-1.6-1.6a1.688 1.688 0 0 1-.466-1.626c.15-.606.566-1 1.31-1.704c.306-.29.668-.634 1.09-1.066l-1.918-.2zm3.205 8.518c.466-.008.933.038 1.39.137l1.318-1.327l-1.31-1.31a2.987 2.987 0 0 1-.874 1.975zm4.118-2.61l2.818-2.838l-1.302-1.302l-2.828 2.828zm4.704 4.704l7.145 7.145a2 2 0 0 0 2.828-2.828l-7.155-7.154zM2.569 10.879l-.258.258l5.276 5.276l.258-.258a1 1 0 0 0 0-1.414l-3.862-3.862a1 1 0 0 0-1.414 0m19.556-5.734a4.078 4.078 0 0 0-1.043 4.136l.179.575L10.699 20.49l-.587-.194a4.058 4.058 0 0 0-4.145.986a4.047 4.047 0 0 0-1.185 3.067l1.971-1.971c.62-.62 1.624-.62 2.244 0l1.61 1.61c.62.62.62 1.623 0 2.244l-1.973 1.973a4.069 4.069 0 0 0 3.021-1.14a4.077 4.077 0 0 0 1.056-4.094l-.17-.57l10.586-10.66l.582.185a4.058 4.058 0 0 0 4.104-.998a4.047 4.047 0 0 0 1.185-3.067l-1.97 1.97a1.586 1.586 0 0 1-2.245 0l-1.61-1.61a1.585 1.585 0 0 1 0-2.243l1.973-1.973a4.069 4.069 0 0 0-3.021 1.139" />
+                            </svg>
+                            <a class="nav-link" id="btnConfiguracion" data-bs-toggle="tab"
+                                href="#configuraciones-tab-pane" role="tab" aria-controls="configuraciones-tab-pane"
+                                aria-selected="false">Configuración</a>
+                        </li>
+                        <li class="nav-item Option" role="presentation">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 384 512">
+                                <path fill="#ffffff"
+                                    d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-384c0-35.3-28.7-64-64-64L64 0zM96 64l192 0c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32L96 160c-17.7 0-32-14.3-32-32l0-32c0-17.7 14.3-32 32-32zm32 160a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM96 352a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM64 416c0-17.7 14.3-32 32-32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-96 0c-17.7 0-32-14.3-32-32zM192 256a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zm64-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM288 448a32 32 0 1 1 0-64 32 32 0 1 1 0 64z" />
+                            </svg>
+                            <a class="nav-link" id="abrirFormulario">Abrir calculadora</a>
+                        </li>
+                        
+                        
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        
+                        <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M18.5 17.8v-2.3q0-.2-.15-.35T18 15t-.35.15t-.15.35v2.3q0 .2.075.375t.225.325l1.525 1.525q.15.15.35.15t.35-.15t.15-.35t-.15-.35zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v5q0 .425-.288.713T20 11t-.712-.288T19 10V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm0-3v1V5v6.075V11zm2-2q0 .425.288.713T8 17h2.075q.425 0 .713-.288t.287-.712t-.287-.712t-.713-.288H8q-.425 0-.712.288T7 16m0-4q0 .425.288.713T8 13h5q.425 0 .713-.288T14 12t-.288-.712T13 11H8q-.425 0-.712.288T7 12m0-4q0 .425.288.713T8 9h8q.425 0 .713-.288T17 8t-.288-.712T16 7H8q-.425 0-.712.288T7 8m11 15q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23" />
+                        </svg>
+                            <a class="nav-link" href="../terminosycondiciones.html" target="_blank" rel="noopener noreferrer">Términos y condiciones</a>
+                        </li>
+                        <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M18.5 17.8v-2.3q0-.2-.15-.35T18 15t-.35.15t-.15.35v2.3q0 .2.075.375t.225.325l1.525 1.525q.15.15.35.15t.35-.15t.15-.35t-.15-.35zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v5q0 .425-.288.713T20 11t-.712-.288T19 10V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm0-3v1V5v6.075V11zm2-2q0 .425.288.713T8 17h2.075q.425 0 .713-.288t.287-.712t-.287-.712t-.713-.288H8q-.425 0-.712.288T7 16m0-4q0 .425.288.713T8 13h5q.425 0 .713-.288T14 12t-.288-.712T13 11H8q-.425 0-.712.288T7 12m0-4q0 .425.288.713T8 9h8q.425 0 .713-.288T17 8t-.288-.712T16 7H8q-.425 0-.712.288T7 8m11 15q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23" />
+                        </svg>
+                            <a class="nav-link" href="../politicadeprivacidad.html" target="_blank" rel="noopener noreferrer">Política de privacidad de datos</a>
+                        </li>
+                        
+                        <p></p>
+                        <p></p>
+                        
+                        <li class="nav-item Option" role="presentation">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 576 512">
+                                <path fill="#ffffff"
+                                    d="M320 32c0-9.9-4.5-19.2-12.3-25.2S289.8-1.4 280.2 1l-179.9 45C79 51.3 64 70.5 64 92.5L64 448l-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0 192 0 32 0 0-32 0-448zM256 256c0 17.7-10.7 32-24 32s-24-14.3-24-32s10.7-32 24-32s24 14.3 24 32zm96-128l96 0 0 352c0 17.7 14.3 32 32 32l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-32 0 0-320c0-35.3-28.7-64-64-64l-96 0 0 64z" />
+                            </svg>
+                            <a class="nav-link " id="btnCerrarSesion">Cerrar Sesión</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Menú lateral (solo visible en pantallas grandes) -->
+            <div class="flex-column d-none d-sm-flex mx-2 hv-100" aria-orientation="vertical">
+                <ul class="list-Option" id="myTabLateral" role="tablist">
+                    <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M4 20v-9.375L2.2 12l-1.175-1.575l11-8.425L23 10.425l-.4.525q-1.125-.775-2.475-.925t-2.625.35q-1.5-.575-3.088-.262t-2.787 1.512t-1.513 2.788t.263 3.087q-.25.6-.325 1.225T10.025 20zm13.5 2.375q-1.05.725-2.312.613t-2.163-1.013t-1.012-2.162t.612-2.313q-.725-1.05-.612-2.312t1.012-2.163t2.163-1.012t2.312.612q1.05-.725 2.313-.612t2.162 1.012t1.013 2.163t-.613 2.312q.725 1.05.613 2.313t-1.013 2.162t-2.162 1.013t-2.313-.613m0-3.625q.525 0 .888-.363t.362-.887t-.363-.888t-.887-.362t-.888.363t-.362.887t.363.888t.887.362" />
+                        </svg>
+                        <a class="nav-link active w-100" id="btnInicio" data-bs-toggle="tab" href="#dashboard-tab-pane"
+                            role="tab" aria-controls="dashboard-tab-pane" aria-selected="true">
+                            Inicio
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="nav-item Option" role="presentation">
+                        <a class="nav-link text-white d-flex justify-content-between align-items-center"
+                            data-bs-toggle="collapse" href="#submenuOperaciones" role="button" aria-expanded="false"
+                            aria-controls="submenuOperaciones">
+                            <div>
+                                <i class="fa fa-exchange-alt fa-lg me-2 "></i> Realizar Operación
+                            </div>
+                            <i class="fa fa-chevron-down ms-3 "></i>
+                        </a>
+                    </li>
+                    <div class="collapse ps-4 flex-column" id="submenuOperaciones">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" id="btn-Operacion-CashOut" data-bs-toggle="tab"
+                                href="#cashout-tab">Cash Out</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="btn-Operacion-CashIn" class="nav-link text-white" data-bs-toggle="tab" href="#cashout-tab">Cash In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" data-bs-toggle="tab" href="#recargas-tab">Recargas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" data-bs-toggle="tab" href="#pdigital-tab">Productos
+                                Digitales</a>
+                        </li>
+                    </div>
+                    <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                d="M11.5 4.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 1.5a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5m-.75 1.25a.75.75 0 0 1 .75-.75c1.238 0 2.363.385 3.178.962C15.496 8.04 16 8.81 16 9.577a1.923 1.923 0 0 1-1.923 1.923h-.327a.75.75 0 0 1 0-1.5h.327c.234 0 .423-.19.423-.423c0-.105-.099-.474-.688-.89C13.257 8.293 12.437 8 11.5 8a.75.75 0 0 1-.75-.75M2.188 8.686C2.743 8.294 3.563 8 4.5 8a.75.75 0 0 0 0-1.5c-1.238 0-2.363.385-3.178.962C.504 8.04 0 8.81 0 9.577C0 10.639.861 11.5 1.923 11.5h.327a.75.75 0 0 0 0-1.5h-.327a.423.423 0 0 1-.423-.423c0-.105.099-.474.688-.89ZM4.5 4.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 1.5a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5m6.25 3.5h-.25V9a2.5 2.5 0 1 0-5 0v.5h-.25c-.69 0-1.25.56-1.25 1.25v3c0 .69.56 1.25 1.25 1.25h5.5c.69 0 1.25-.56 1.25-1.25v-3c0-.69-.56-1.25-1.25-1.25M9 9v.5H7V9a1 1 0 1 1 2 0m-3.5 2v2.5h5V11z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <a class="nav-link" id="btnFuncOperativas" data-bs-toggle="tab" href="#foperativas-tab-pane"
+                            role="tab" aria-controls="foperativas-tab-pane" aria-selected="false">Funciones
+                            Operativas</a>
+                    </li>
+                    <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M18.5 17.8v-2.3q0-.2-.15-.35T18 15t-.35.15t-.15.35v2.3q0 .2.075.375t.225.325l1.525 1.525q.15.15.35.15t.35-.15t.15-.35t-.15-.35zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v5q0 .425-.288.713T20 11t-.712-.288T19 10V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm0-3v1V5v6.075V11zm2-2q0 .425.288.713T8 17h2.075q.425 0 .713-.288t.287-.712t-.287-.712t-.713-.288H8q-.425 0-.712.288T7 16m0-4q0 .425.288.713T8 13h5q.425 0 .713-.288T14 12t-.288-.712T13 11H8q-.425 0-.712.288T7 12m0-4q0 .425.288.713T8 9h8q.425 0 .713-.288T17 8t-.288-.712T16 7H8q-.425 0-.712.288T7 8m11 15q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23" />
+                        </svg>
+                        <a class="nav-link" id="btnResumenOperacion" data-bs-toggle="tab"
+                            href="#resumen-operaciones-tab-pane" role="tab"
+                            aria-controls="resumen-operaciones-tab-pane" aria-selected="false">Historial de
+                            Operaciónes</a>
+                    </li>
+                    <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
+                            <path fill="currentColor"
+                                d="m16.154 3.901l-2.492 2.492l1.768 1.768a1.5 1.5 0 0 1 .293 1.707l1.357 1.358l1.939-1.952a6.07 6.07 0 0 1 1.715-5.567l.003-.003a6.062 6.062 0 0 1 5.65-1.53c1.214.296 1.617 1.8.75 2.668L24.88 7.1l1.026 1.026l2.254-2.254c.89-.908 2.384-.435 2.672.745l.001.003a6.061 6.061 0 0 1-7.122 7.371l-1.925 1.94l7.16 7.16a4 4 0 1 1-5.657 5.656l-7.14-7.14l-1.375 1.384a6.07 6.07 0 0 1-1.727 5.512l-.003.003a6.062 6.062 0 0 1-5.651 1.53c-1.213-.297-1.616-1.302-.75-2.668l2.259-2.258l-1.026-1.026l-2.253 2.253c-.89.909-2.385.436-2.673-.745l-.001-.003A6.061 6.061 0 0 1 6.8 18.444a1.23 1.23 0 0 1-.096-.087L.366 12.02a1.251 1.251 0 0 1 0-1.768l.788-.788a3 3 0 0 1 2.52-.852a2 2 0 0 1 .089-.1l7.073-7.073a1.5 1.5 0 0 1 1.219-.43l3.2.338a1.5 1.5 0 0 1 .904 2.555zM5.53 9.575l3.894 3.888l4.242-4.243l-1.6-1.6a1.688 1.688 0 0 1-.466-1.626c.15-.606.566-1 1.31-1.704c.306-.29.668-.634 1.09-1.066l-1.918-.2zm3.205 8.518c.466-.008.933.038 1.39.137l1.318-1.327l-1.31-1.31a2.987 2.987 0 0 1-.874 1.975zm4.118-2.61l2.818-2.838l-1.302-1.302l-2.828 2.828zm4.704 4.704l7.145 7.145a2 2 0 0 0 2.828-2.828l-7.155-7.154zM2.569 10.879l-.258.258l5.276 5.276l.258-.258a1 1 0 0 0 0-1.414l-3.862-3.862a1 1 0 0 0-1.414 0m19.556-5.734a4.078 4.078 0 0 0-1.043 4.136l.179.575L10.699 20.49l-.587-.194a4.058 4.058 0 0 0-4.145.986a4.047 4.047 0 0 0-1.185 3.067l1.971-1.971c.62-.62 1.624-.62 2.244 0l1.61 1.61c.62.62.62 1.623 0 2.244l-1.973 1.973a4.069 4.069 0 0 0 3.021-1.14a4.077 4.077 0 0 0 1.056-4.094l-.17-.57l10.586-10.66l.582.185a4.058 4.058 0 0 0 4.104-.998a4.047 4.047 0 0 0 1.185-3.067l-1.97 1.97a1.586 1.586 0 0 1-2.245 0l-1.61-1.61a1.585 1.585 0 0 1 0-2.243l1.973-1.973a4.069 4.069 0 0 0-3.021 1.139" />
+                        </svg>
+                        <a class="nav-link" id="btnConfiguracion" data-bs-toggle="tab"
+                            href="#configuraciones-tab-pane" role="tab" aria-controls="configuraciones-tab-pane"
+                            aria-selected="false">Configuración</a>
+                    </li>
+                    <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 384 512">
+                            <path fill="#ffffff"
+                                d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-384c0-35.3-28.7-64-64-64L64 0zM96 64l192 0c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32L96 160c-17.7 0-32-14.3-32-32l0-32c0-17.7 14.3-32 32-32zm32 160a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM96 352a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM64 416c0-17.7 14.3-32 32-32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-96 0c-17.7 0-32-14.3-32-32zM192 256a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zm64-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM288 448a32 32 0 1 1 0-64 32 32 0 1 1 0 64z" />
+                        </svg>
+                        <a class="nav-link" id="abrirFormularioL">Abrir calculadora</a>
+                    </li>
+                    
+                    
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    
+                    <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M18.5 17.8v-2.3q0-.2-.15-.35T18 15t-.35.15t-.15.35v2.3q0 .2.075.375t.225.325l1.525 1.525q.15.15.35.15t.35-.15t.15-.35t-.15-.35zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v5q0 .425-.288.713T20 11t-.712-.288T19 10V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm0-3v1V5v6.075V11zm2-2q0 .425.288.713T8 17h2.075q.425 0 .713-.288t.287-.712t-.287-.712t-.713-.288H8q-.425 0-.712.288T7 16m0-4q0 .425.288.713T8 13h5q.425 0 .713-.288T14 12t-.288-.712T13 11H8q-.425 0-.712.288T7 12m0-4q0 .425.288.713T8 9h8q.425 0 .713-.288T17 8t-.288-.712T16 7H8q-.425 0-.712.288T7 8m11 15q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23" />
+                        </svg>
+                            <a class="nav-link" href="../terminosycondiciones.html" target="_blank" rel="noopener noreferrer">Términos y condiciones</a>
+                    </li>
+                    <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M18.5 17.8v-2.3q0-.2-.15-.35T18 15t-.35.15t-.15.35v2.3q0 .2.075.375t.225.325l1.525 1.525q.15.15.35.15t.35-.15t.15-.35t-.15-.35zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v5q0 .425-.288.713T20 11t-.712-.288T19 10V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm0-3v1V5v6.075V11zm2-2q0 .425.288.713T8 17h2.075q.425 0 .713-.288t.287-.712t-.287-.712t-.713-.288H8q-.425 0-.712.288T7 16m0-4q0 .425.288.713T8 13h5q.425 0 .713-.288T14 12t-.288-.712T13 11H8q-.425 0-.712.288T7 12m0-4q0 .425.288.713T8 9h8q.425 0 .713-.288T17 8t-.288-.712T16 7H8q-.425 0-.712.288T7 8m11 15q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23" />
+                        </svg>
+                            <a class="nav-link" href="../politicadeprivacidad.html" target="_blank" rel="noopener noreferrer">Política de privacidad de datos</a>
+                    </li>
+                    
+                    <p></p>
+                    <p></p>
+                    
+                    <li class="nav-item Option" role="presentation">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 576 512">
+                            <path fill="#ffffff"
+                                d="M320 32c0-9.9-4.5-19.2-12.3-25.2S289.8-1.4 280.2 1l-179.9 45C79 51.3 64 70.5 64 92.5L64 448l-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0 192 0 32 0 0-32 0-448zM256 256c0 17.7-10.7 32-24 32s-24-14.3-24-32s10.7-32 24-32s24 14.3 24 32zm96-128l96 0 0 352c0 17.7 14.3 32 32 32l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-32 0 0-320c0-35.3-28.7-64-64-64l-96 0 0 64z" />
+                        </svg>
+                        <a class="nav-link " id="btnCerrarSesionL">Cerrar Sesión</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid p-0">
+            <div class="div-content-info justify-center align-center d-none text-white d-sm-flex py-2">
+                <div class="div-info-cod_agent">
+                    <h2 class="lead">Codigo de Agente: <?php echo htmlspecialchars($cod_agen); ?></h1>
+                </div>
+                <div class="div-info-user">
+                    <h1 class=" lead welcome text-white">Bienvenido: </h1>
+                    <h1 class=" lead name"><?php echo htmlspecialchars($nombre); ?></h1>
+                    <img class="img-logo-user" src="../IMG/img-icons/hombre.png" alt="">
+                </div>
+
+            </div>
+            <div class="div-data-system" style="background-color: rgb(68, 167, 22);">
+                <div class="saldo d-flex flex-column flex-sm-row"><strong>
+                        <p class="h6">Este mes vas ganando: S/</p>
+                    </strong>
+                    <p class=" h6 saldoAc" id="Saldo">
+                        <?php echo $datacomisiones['ComisionMesActual']; ?>
+                    </p>
+                </div>
+                <div class="saldo d-flex flex-column flex-sm-row">
+                    <p class="h6">Mes anterior: S/</p>
+                    <p class=" h6 saldoAn" id="saldo">
+                        <?php echo $datacomisiones['ComisionMesAnterior']; ?>
+                    </p>
+                </div>
+                <div class="fecha d-flex flex-column flex-sm-row">
+                    <p class="h6">Fecha: </p>
+                    <p class="h6" id="Date"></p>
+                </div>
+            </div>
+            <!-- Contenido de los Tabs -->
+            <div class="tab-content" id="myTabContent">
+
+                <!--Contenido del Dashboard-->
+                <div class="tab-pane fade show active" id="dashboard-tab-pane" role="tabpanel" aria-labelledby="btnInicio">
+                    <div id="ViewInicio">
+                        <div class="princial d-block d-sm-flex">
+                            <div class="div-con1">
+                                <div class="div-con1-caja">
+                                    <h1 class="">Total Comisiones</h1>
+                                    <div class="div-con1-detalle">
+                                        <span>S/</span><span>
+                                            <?php echo $datacomisiones['ComisionTotal']; ?>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-con2 text-center">
+                                <?php
+                                $membresia = calcularMembresia($dataAfiliado["data"]["fecha_afil"], $datacomisiones['ComisionMesActual']);
+                                ?>
+                                <h1>Membresia Mensual</h1>
+                                <p>Al dia de hoy tu pago de membresia es de:</p>
+                                <div class="div-con2-detalle">
+                                    <span>S/</span>
+                                    <?php echo ("<span>" . $membresia . "</span>") ?>
+                                </div>
+                                <p>* Sujeto a cambio (cierre de mes)</p>
+                            </div>
+                        </div>
+                        <div class="d-block d-sm-flex justify-content-around text-center">
+                            <div class="detalle1">
+                                <h1>Comisiones Ganacias</h1>
+                                <div class="detalle-precio-img">
+                                    <span>S/</span><span>
+                                        <?php echo $datacomisiones['ComisionMesActual']; ?>
+                                    </span>
+                                    <img src="../IMG/coin.png" alt="" srcset="">
+                                </div>
+
+                            </div>
+                            <div class="text-center d-flex flex-column align-items-center">
+                                <?php
+                                $resultado = obtenerRankingOperacionesMes();
+                                if ($resultado['status'] == 'success') {
+                                    echo "<h1>Ranking de Operaciones</h1>";
+                                    echo "<ul>";
+                                    foreach ($resultado['rankingsMes'] as $row) {
+                                        echo "<li>" . $row['tipo_oper'];
+                                    }
+                                    echo "</ul>";
+                                } else {
+                                    echo "<p>" . $resultado['message'] . "</p>";
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="grafica">
+                            <h1>Evolutivo de Comisiones</h1>
+                            <div class="grafica2">
+                                <canvas id="mybar" class="grafico" width="200" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div class="detalle2">
+                            <div class="grafica1"><canvas id="myChart" class="grafico"></canvas></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--Contenido del Operaciones Info-->
+
+                <div class="tab-pane fade" id="Operaciones-tab-pane" role="tabpanel" aria-labelledby="btnOperacionesInfo">
+                    <div id="ViewIndicaciones">
+                        <div class="contenido-Operaciones">
+                            <div class="con-op1">
+                                <h1>Cash Out</h1>
+                                <p>En esta seccion podras realizar las siguentes operaciones:</p>
+                                <ul>
+                                    <li>Pagos de Servicios</li>
+                                    <li>Depósitos</li>
+                                    <li>Pago de Tarjeta</li>
+                                    <li>Giros</li>
+                                    <li>Depositos Yape</li>
+                                </ul>
+                                <a href="#" download="">Descargar el Manual</a>
+                            </div>
+                            <div class="con-op2">
+                                <h1>Cash In</h1>
+                                <p>En esta seccion podras realizar las siguentes operaciones:</p>
+                                <ul>
+                                    <li>Retiros</li>
+                                    <li>Pasarela de Pagos</li>
+                                </ul>
+                                <a href="#">Descargar el Manual</a>
+                            </div>
+                            <div class="con-op3">
+                                <h1>Recargas</h1>
+                                <p>En esta seccion podras realizar las siguentes recargas:</p>
+                                <ul>
+                                    <li>Entel</li>
+                                    <li>Movistar</li>
+                                    <li>Bitel</li>
+                                    <li>Claro</li>
+                                </ul>
+                                <a href="#">Descargar el Manual</a>
+                            </div>
+                            <div class="con-op4">
+                                <h1>Productos Digitales</h1>
+                                <p>En esta seccion podras realizar la compra de los siguientes productos</p>
+                                <ul>
+                                    <li>Netflix</li>
+                                    <li>HBO Max</li>
+                                    <li>Disney +</li>
+                                    <li>Amazon Prime video</li>
+                                </ul>
+                                <a href="#">Descargar el Manual</a>
+                            </div>
+                            <div class="con-op5">
+                                <h1>Consultar CCI</h1>
+                                <div class="Consultar-CCI d-flex flex-column flex-sm-row">
+                                    <div class="w-100">
+                                        <p>En esta seccion puede consultar el CCI de una cuenta la cual deseas realizar un
+                                            deposito:</p>
+                                        <br>
+                                        <p>Si no encuentras el banco o la entidad finaciera de tu preferencias <a
+                                                href="https://www.transferenciasinterbancarias.pe/obten-tu-cci/"
+                                                target="_blank"> haz click aquí.</a></p>
+                                    </div>
+                                    <ul>
+                                        <!--https://www.transferenciasinterbancarias.pe/obten-tu-cci/-->
+                                        <!--Para consultar cualquier CCI-->
+                                        <li><a href="">Consultar CCI de BCP</a></li>
+                                        <li><a href="">Consultar CCI de Interbank</a></li>
+                                        <li><a href="">Consultar CCI de Sctotiabank</a></li>
+                                        <li><a href="">Consultar CCI de BBVA</a></li>
+                                        <li><a href="">Consultar CCI de Banco de la Nación</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Contenido del Operaciones-->
+                <!--CashIn y Out-->
+                <div class="tab-pane fade" id="cashout-tab" role="tabpanel" aria-labelledby="btn-Operacion-CashOut">
+                    <div id="ViewOperaciones" class="">
+                        <div class="d-flex flex-column justify-content-center align-items-center d-sm-flex flex-sm-row align-items-sm-start caja-opera-cont">
+                            <div class="cont-operacion">
+                                <fieldset>
+                                    <legend>Datos:</legend>
+                                    <div class="data-content">
+                                        <label for="">Tipo de Operacion:</label>
+                                        <select name="" id="cmbtiOp" disabled>
+                                            <option value="TipoOperacion">TipoOperacion</option>
+                                            <option value="PAGO DE SERVICIOS">PAGO DE SERVICIOS</option>
+                                            <option value="DEPÓSITOS">DEPÓSITOS</option>
+                                            <option value="RETIROS">RETIROS</option>
+                                            <option value="PAGO DE TARJETA">PAGO DE TARJETA</option>
+                                            <option value="GIROS">GIROS</option>
+                                        </select>
+                                        <label for="">Entidad Prestaria:</label>
+                                        <select name="" id="cmbEnPr" disabled>
+                                            <option value="Entidad">Entidad</option>
+                                            <option value="BCP">BCP</option>
+                                            <option value="RetiroExpress">RetiroExpress</option>
+
+                                        </select>
+                                        <label for="">Nro° Operación:</label>
+                                        <input type="text" name="" id="txtidAgOp" disabled>
+                                        <label for="">Fecha/Hora:</label>
+                                        <input type="text" name="" id="txtFyHOperacion" disabled>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="cont-operacion-tipo">
+                                <fieldset id="divPagoServi">
+                                    <legend>Pago de Servicios:</legend>
+                                    <div class="data-content">
+                                        <label for="">Categoria:</label>
+                                        <input type="text" id="txtCategoria" disabled>
+                                        <label for="">Servicio: </label>
+                                        <input type="text" id="txtServicio" disabled>
+                                        <label for="">Empresa</label>
+                                        <input type="text" id="txtEmpresa" disabled>
+                                        <label for="">Numero de recibo</label>
+                                        <input type="text" id="txtNumeroDeRecibo" disabled>
+                                        <label for="">Codigo de Usuario</label>
+                                        <input type="text" id="txtCodigoDeUsuario" disabled>
+                                        <label for="">Titular</label>
+                                        <input type="text" id="txtTitular" disabled>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset id="divDeposito">
+                                    <legend>Depositos:</legend>
+                                    <div class="data-content">
+                                        <label for="">Banco de Destino:</label>
+                                        <input type="text" id="txtBancoDeDestinoDepos" disabled>
+                                        <label for="">Numero de Cuenta: </label>
+                                        <input type="text" id="txtNumeroDeCuenta" disabled>
+                                        <label for="">Titular</label>
+                                        <input type="text" id="txtTitularDepos" disabled>
+                                    </div>
+                                </fieldset>
+                                <fieldset id="divPagoTarjCred">
+                                    <legend>Pago de Tarjeta de Credito:</legend>
+                                    <div class="data-content">
+                                        <label for="">Banco de Destino:</label>
+                                        <input type="text" id="txtBancodeDestinoTC" disabled>
+                                        <label for="">Nro Tarjeta de Credito </label>
+                                        <input type="text" id="txtNroTarjetaDeCredito" disabled>
+                                        <label for="">Titular</label>
+                                        <input type="text" id="txtTitularTC" disabled>
+                                    </div>
+                                </fieldset>
+                                <fieldset id="divGiro">
+                                    <legend>Giro: </legend>
+                                    <div class="data-content">
+                                        <label for="">Banco de Destino:</label>
+                                        <input type="text" id="txtBancoDeDestinoGiro" disabled>
+                                        <label for="">DNI del Beneficiario</label>
+                                        <input type="text" id="txtDNIDelBeneficiario" disabled>
+                                        <label for="">Beneficiario</label>
+                                        <input type="text" id="txtBeneficiarioGiro" disabled>
+                                    </div>
+                                </fieldset>
+                                <fieldset id="divRetiro">
+                                    <legend>Retiro: </legend>
+                                    <div class="data-content">
+                                        <label for="">Tipo de Retiro:</label>
+                                        <select name="" id="cmbRetiros" disabled="disabled">
+                                            <option value="TIpoRetiro">TIpoRetiro</option>
+                                            <option value="Pago con tarjeta celular">Pago con tarjeta celular</option>
+                                            <option value="sQR">sQR</option>
+                                        </select>
+                                        <label for="">Nro Tarjeta</label>
+                                        <input type="text" id="txtNroTarjetaRetiros" disabled>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="cont-operacion">
+                                <fieldset>
+                                    <legend>Cargos:</legend>
+                                    <div class="data-content">
+                                        <label for="">Importe:</label>
+                                        <input type="text" id="txtImporte">
+                                        <label for="">Comisión:</label>
+                                        <input type="text" id="txtComisión">
+                                        <label for="">Monto total:</label>
+                                        <input type="text" id="txtMontoTotal">
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="text-center m-2">
+                            <button id="btnReaOper" class="btn btn-primary">Realizar Operación</button>
+                            <button id="btnFinOper" class="btn btn-primary">Finalizar Operación</button>
+                            <!--<button id="btnImpOper">Imprimir</button>-->
+                        </div>
+                    </div>
+                </div>
+
+                <!--Recargas-->
+                <div class="tab-pane fade" id="recargas-tab" role="tabpanel" aria-labelledby="">
+                    <div id="ViewRecargas" class="">
+                <!--<iframe width="100%" height="1400" src="https://bancainternetempresas.scotiabank.com.pe/bancaInternetEmp/InicioCCIServlet" frameborder="0"></iframe>-->
+                <!--<<iframe width="100%" height="1400" src="https://bancaporinternet.bn.com.pe/CCIConsulta/Inicio" frameborder="0"></iframe>-->
+                <div class="Caja-Op-Recargas">
+                    <h2>Elige la Operadora</h2>
+                    <div class="list">
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Entel" id="Entel">
+                            <label for="Entel">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/entel.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                                <div class="form-element">
+                            <input type="radio" name="platform" value="Claro" id="Claro">
+                            <label for="Claro">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/claro.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Movistar" id="Movistar">
+                            <label for="Movistar">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/movistar.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Bitel" id="Bitel">
+                            <label for="Bitel">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/bitel.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                            </div>
+                        </div>
+                        <div class="Caja-Op-Recargas">
+                            <h2>Elige el monto a recargar:</h2>
+                            <div class="list">
+                                <div class="form-element">
+                            <input type="radio" name="price" value="5" id="S/5.00">
+                            <label for="S/5.00">
+                                <div class="icon">
+                                </div>
+                                <div class="title">
+                                    S/5.00
+                                </div>
+                            </label>
+                        </div>
+                                <div class="form-element">
+                            <input type="radio" name="price" value="7" id="S/7.00">
+                            <label for="S/7.00">
+                                <div class="icon">
+                                </div>
+                                <div class="title">
+                                    S/7.00
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="price" value="10" id="S/10.00">
+                            <label for="S/10.00">
+                                <div class="icon">
+                                </div>
+                                <div class="title">
+                                    S/10.00
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="price" value="15" id="S/15.00">
+                            <label for="S/15.00">
+                                <div class="icon">
+                                </div>
+                                <div class="title">
+                                    S/15.00
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="price" value="20" id="S/20.00">
+                            <label for="S/20.00">
+                                <div class="icon">
+                                </div>
+                                <div class="title">
+                                    S/20.00
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="price" value="30" id="S/30.00">
+                            <label for="S/30.00">
+                                <div class="icon">
+                                </div>
+                                <div class="title">
+                                    S/30.00
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="price" value="40" id="S/40.00">
+                            <label for="S/40.00">
+                                <div class="icon">
+                                </div>
+                                <div class="title">
+                                    S/40.00
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="price" value="50" id="S/50.00">
+                            <label for="S/50.00">
+                                <div class="icon">
+                                </div>
+                                <div class="title">
+                                    S/50.00
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="price" value="Otro" id="otroMonto">
+                            <label class="lbl_otro" for="otroMonto">Otro monto</label>
+                        </div>
+                        <p>Ingrese el número a recargar:</p>
+                        <div class="Otro-monto-i">
+                            <input class="in-otro-monto" type="number" id="otroMonto">
+                        </div>
+
+                    </div>
+                    <div class="recordatorio-recargas">
+                        <p>Recuerda que las recargas llegaran en un maximo de 10 minutos</p>
+                    </div>
+                    <div class="wrapper">
+                        <button>
+                            Recargar
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Productos digitales-->
+                <div class="tab-pane fade" id="pdigital-tab" role="tabpanel" aria-labelledby="">
+                    <div id="ViewIProductosDigitales" class="">
+                        <div class="caja-opera-pd">
+                            <h2>Productos Digitales / Streaming</h2>
+                            <p>Selecciona el producto que deseas aquirir</p>
+                            <div class="list">
+                                <div class="form-element">
+                                    <input type="radio" name="platform" value="Netflix" id="Netflix">
+                                    <label for="Netflix">
+                                        <div class="icon">
+                                        <img src="../IMG/Streaming/netflix.jpg" width="100%" height="100%" alt="">
+                                        </div>
+                                    </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="HBO Max" id="HBO Max">
+                            <label for="HBO Max">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/max.jpeg" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Disney +" id="Disney +">
+                            <label for="Disney +">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/disneyplus.jpg" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Disney P" id="Disney P">
+                            <label for="Disney P">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/Disney_P.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Crunchyroll" id="Crunchyroll">
+                            <label for="Crunchyroll">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/Crunchyroll.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Amazon Prime" id="Amazon Prime">
+                            <label for="Amazon Prime">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/primevideo.jpg" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Paramount" id="Paramount">
+                            <label for="Paramount">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/paramount.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Spotify" id="Spotify">
+                            <label for="Spotify">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/spotify.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="IPTV" id="IPTV">
+                            <label for="IPTV">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/IPTV.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="DirectTV Go" id="DirectTV Go">
+                            <label for="DirectTV Go">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/directvgo.jpg" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Youtube Premium" id="Youtube Premium">
+                            <label for="Youtube Premium">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/youtube.jpg" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Plex" id="Plex">
+                            <label for="Plex">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/plex.jpg" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Vix" id="Vix">
+                            <label for="Vix">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/vix.jpg" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Zapping" id="Zapping">
+                            <label for="Zapping">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/zapping.jpg" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Movistar Play" id="Movistar Play">
+                            <label for="Movistar Play">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/movistarplay.jpg" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-element">
+                            <input type="radio" name="platform" value="Canva Pro" id="Canva Pro">
+                            <label for="Canva Pro">
+                                <div class="icon">
+                                    <img src="../IMG/Streaming/canva.png" width="100%" height="100%" alt="">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="">Selecciona la cantidad</label> 
+                        <select name="" id="" enable>
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="wrapper2">
+                            <button>
+                                Realizar Pedido
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Contenido de Funciones Operativas-->
+
+                <div class="tab-pane fade" id="foperativas-tab-pane" role="tabpanel" aria-labelledby="btnFuncOperativas">
+                    <div id="ViewFuncionesOperativas" class="">
+                        <div class="apetura-caja">
+                            <!-- Button trigger modal -->
+                            <div class="d-flex justify-content-evenly mt-5 my-5">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#ModalAperturaCaja">
+                                    Apertura de Caja
+                                </button>
+                                <button id="" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#ModalDepositoRetiro">
+                                    Depóstiar/Retirar
+                                </button>
+                            </div>
+                            <div>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="ModalAperturaCaja" data-bs-backdrop="static" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="inert">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Apertura de Caja</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body d-flex flex-column gap-2">
+                                            <!--Saldo Cuenta -->
+                                            <div class="row g-3 align-items-center">
+                                                <div class="col-auto">
+                                                    <label for="txtMontoCuentaA" class="col-form-label">Saldo Cuenta</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <input type="text" id="txtMontoCuentaA" class="form-control"
+                                                        aria-describedby="passwordHelpInline">
+                                                </div>
+                                                <div class="col-auto">
+                                                    <span id="passwordHelpInline" class="form-text">
+                                                        * Ingresa el monto actual de tu Cuenta de Ahorros.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!--Saldo Caja Chica -->
+                                            <div class="row g-3 align-items-center">
+                                                <div class="col-auto">
+                                                    <label for="txtMontoEfectivoA" class="col-form-label">Saldo Caja
+                                                        Chica</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <input type="text" id="txtMontoEfectivoA" class="form-control"
+                                                        aria-describedby="passwordHelpInline">
+                                                </div>
+                                                <div class="col-auto">
+                                                    <span id="passwordHelpInline" class="form-text">
+                                                        * Ingresa el monto actual en efectivo.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button id="btnAbrirCaja" type="button" class="btn btn-success">Guardar</button>
+                                            <div class="col-auto">
+                                                <span id="lblAperturaCaja" class="form-text">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                            <!-- Modal de Cierre de Caja -->
+                            <div class="modal fade" id="ModalCierreCaja" data-bs-backdrop="static" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Cierre de Caja</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body d-flex flex-column gap-2">
+                                            <!--Saldo Cuenta -->
+                                            <div class="row g-3 align-items-center">
+                                                <div class="col-auto">
+                                                    <label for="txtMontoCuentaC" class="col-form-label">Saldo Cuenta</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <input type="text" id="txtMontoCuentaC" class="form-control"
+                                                        aria-describedby="passwordHelpInline">
+                                                </div>
+                                            </div>
+                                            <!--Saldo Caja Chica -->
+                                            <div class="row g-3 align-items-center">
+                                                <div class="col-auto">
+                                                    <label for="txtMontoEfectivoC" class="col-form-label">Saldo Caja
+                                                        Chica</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <input type="text" id="txtMontoEfectivoC" class="form-control"
+                                                        aria-describedby="passwordHelpInline">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button id="btnGuardarCierre" class="btn btn-success">Guardar</button>
+                                            <div class="col-auto">
+                                                <span id="lblCierreCaja" class="form-text">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="ModalDepositoRetiro" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Operación</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body d-flex flex-column gap-2">
+                                            <!--Saldo Cuenta -->
+                                            <div class="row g-3 align-items-center">
+                                                <div class="col-auto">
+                                                    <label for="cmbMontoOperacionCaja"
+                                                        class="col-form-label">Operación</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <select id="cmbMontoOperacionCaja" class="form-select"
+                                                        aria-label="Default select example">
+                                                        <option selected>Eliga una opción</option>
+                                                        <option value="Depósito">Depósito</option>
+                                                        <option value="Retiro">Retiro</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--Saldo Caja Chica -->
+                                            <div class="row g-3 align-items-center">
+                                                <div class="col-auto">
+                                                    <label for="txtMontoOperacionCaja" class="col-form-label">Monto</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <input type="text" id="txtMontoOperacionCaja" class="form-control"
+                                                        aria-describedby="passwordHelpInline">
+                                                </div>
+                                                <div class="col-auto">
+                                                    <span id="passwordHelpInline" class="form-text">
+                                                        * Ejemplo:"10.50","100".
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 align-items-center">
+                                                <div class="col-auto">
+                                                    <label for="txtNroOperacionCaja" class="col-form-label">Nro
+                                                        Operación</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <input type="text" id="txtNroOperacionCaja" class="form-control"
+                                                        aria-describedby="passwordHelpInline">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button id="btnGuardarCajaDR" type="button"
+                                                class="btn btn-success">Guardar</button>
+                                            <div class="col-auto">
+                                                <span id="lblOperacionCajaRD" class="form-text">
+                                                    * Ingresa el monto actual de tu Cuenta de Ahorros.
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container my-2">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <table id="datatable_cajas" class="table table-striped responsive" style="width: 100%;">
+                                        <caption>
+                                            DataTable Cajas
+                                        </caption>
+                                        <thead>
+                                            <tr>
+                                                <th class="centered">Caja</th>
+                                                <th class="centered">Apertura</th>
+                                                <th class="centered">Cierre</th>
+                                                <th class="centered">Estado</th>
+                                                <th class="centered">Opciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableBody_cajas"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Contenido de Resumen de Operaciones-->
+
+                <div class="tab-pane fade" id="resumen-operaciones-tab-pane" role="tabpanel"
+                    aria-labelledby="btnResumenOperacion" tabindex="0">
+                    <div id="ViewResumenOperaciones" class="">
+                        <h3>Historial de todas las operación</h3>
+                        <div>
+                            <div class="container my-2">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                        <table id="datatable_operaciones" class="table table-striped responsive" style="width: 100%;">
+                                            <caption>
+
+                                            </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th class="centered">#</th>
+                                                    <th class="centered">Tipo Operacion</th>
+                                                    <th class="centered">Importe</th>
+                                                    <th class="centered">Comisión</th>
+                                                    <th class="centered">Fecha Operación</th>
+                                                    <th class="centered">Detalles</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableBody_operaciones"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Contenido de Configuraciones-->
+
+                <div class="tab-pane fade" id="configuraciones-tab-pane" role="tabpanel" aria-labelledby="btnConfiguracion"
+                    tabindex="0">
+                    <div id="ViewConfiguracion" class="">
+                        <div class="container-fluid col-10 text-center">
+                            <h1 for="barRango" class="form-label mb-4 mt-1">Configuración de Comisiones</h1>
+                            <div style="position: relative; width: 100%;">
+                                <input id="barRango" type="range" class="form-range" min="0" max="1000" step="50" value="0">
+                                <span id="valorRango" class="rango-label">0</span>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <!-- Mínimo -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Mínimo</span>
+                                <input type="text" id="inputMinimo" class="form-control" readonly>
+                                <button id="btnEstablecerMin" class="btn btn-outline-secondary">Establecer</button>
+                            </div>
+
+                            <!-- Máximo -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Máximo</span>
+                                <input type="text" id="inputMaximo" class="form-control" readonly disabled>
+                                <button id="btnEstablecerMax" class="btn btn-outline-secondary" disabled>Establecer</button>
+                            </div>
+
+                            <!-- Monto Comisión -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Monto Comisión</span>
+                                <input type="text" id="inputMontoComision" class="form-control" readonly>
+                                <button id="btnAgregarRango" class="btn btn-outline-secondary" disabled>Agregar
+                                    Rango</button>
+                            </div>
+                        </div>
+                        <!-- Contenedor donde se mostrará la configuración guardada -->
+                        <div class="container" id="configCardContainer" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>InDigital SAC.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let offcanvasElement = document.getElementById("Nav-desplegable");
+
+            // Asegurar que el Offcanvas esté inicializado correctamente
+            let offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement);
+
+            // Agregar evento a los tabs para cerrar el offcanvas después de cambiar
+            document.querySelectorAll('#myTab .nav-link').forEach(link => {
+                link.addEventListener("shown.bs.tab", function() {
+                    if (offcanvasInstance) {
+                        offcanvasInstance.hide();
+                    }
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const submenuLinks = document.querySelectorAll('#submenuOperaciones .nav-link');
+            const submenuCollapse = bootstrap.Collapse.getOrCreateInstance(document.getElementById('submenuOperaciones'));
+
+            submenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    submenuCollapse.hide(); // Oculta el menú colapsable
+                });
+            });
+        });
+    </script>
+
+    <!--JS Personalizado-->
+    <script type="module" src="js/script.js"></script>
+    <script src="js/Operaciones.js"></script>
+    <script src="js/barRango.js"></script>
+    <script src="js/funcionesOperativas.js"></script>
+    <script src="js/resumenOperaciones.js"></script>
+    <script src="js/calculadoraEx.js"></script>
+
+    <!--Js Bootstrap-->
+
+    <!--Js JQuery-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+    
+    <!--Js DataTable.js-->
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.4/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.4/js/responsive.bootstrap5.js"></script>
+    
+    <!--Sweetalert2.js-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    
+    
+    
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../../CSS/login.css">
+    <link rel="icon" href="/IMG/icon.png" type="image/png">
+    <script src="/JS/login.js"></script>
+    <title>Agente Express</title>
+</head>
+
+<body>
+    <div class="contenedorCuerpo">
+        <form action="../Agente/php/login.php" method="post">
+            <section class="container-login">
+                <div class="login-img"><a href="/index.html"><img src="../IMG/Logo-Oficial.png" alt=""></a></div>
+                <div class="login">
+                    <h1 class="title-login">Ingresa tus credenciales</h1>
+                    <input name="correo" class="txtuser" type="text" placeholder="Usuario" required>
+                    <input name="clave" class="txtpwd" type="password" placeholder="contraseña" required>
+                    <hr>
+                    <button class="btnI" type="submit" value="Iniciar Sesión">Iniciar Sesión</button>
+                    <input class="btnR" type="button" onclick="redicRegister()" value="Registrarse">
+                    <p class="info"><a href="">Recuperar contraseña</a></p>
+                </div>
+            </section>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

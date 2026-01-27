@@ -1,0 +1,245 @@
+/*.register {
+    display: none; /* Inicialmente oculto 
+    background-color: #fff; /* Fondo blanco 
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999; Colocarlo por encima del resto de elemento
+}
+
+Estilo para el botón de volver atrás
+.back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    background-color: #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+}*/
+
+.container-register{
+    border-radius: 15px;
+    width: 90%;
+    height: auto;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0,0.25);
+    background: transparent;
+
+    
+}   
+.title-register{
+    text-align: center;
+}
+.register-img{
+    display: flex;
+    background-color: rgb(0, 81, 153);
+    /*border-radius: 15px; */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin: 0 auto;
+    align-items: center;
+    width: 100%;
+}
+img{
+    max-width: 300px;
+    margin: 0px 20px;
+}
+.register{
+    padding: 0px 50px;
+    width: auto;
+    height: auto;
+    text-align: left;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: grid;
+    gap: 20px;
+    justify-content:center;
+    align-items: center;
+    background-color: aliceblue;
+    /*padding-left: 15px;*/
+    grid-template-columns: repeat(2 1fr);
+    grid-template-rows: repeat(13 auto);
+    grid-template-areas: "title title"
+    "correo nombre"
+    "apeP apeM"
+    "DNI  Celular "
+    "pais depart "
+    " prov Distrito "
+    " ruc ruc"
+    "TipNeg dicNeg"
+    "quest1 quest1"
+    "quest2 quest2"
+    "btnRegist btnRegist"
+    "info info"
+    "back back";
+}
+/*.register div{
+    border: 1px solid black;
+}*/
+.title-register{
+    grid-area: title;
+}
+.contEmail{
+    grid-area: correo;
+    
+    
+}
+.contName{
+    grid-area: nombre;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    justify-content: center;
+    align-items: start;
+}
+.contAP{
+    grid-area: apeP;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.contAM{
+    grid-area: apeM;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.contDNI{
+    grid-area: DNI;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.contPais{
+    grid-area: pais;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.contDepart{
+    grid-area: depart;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.contProv{
+    grid-area: prov;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.contDist{
+    grid-area: Distrito;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.contPhone{
+    grid-area: Celular;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.contTB{
+    grid-area: TipNeg;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.contDN{
+    grid-area: dicNeg;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;
+}
+.contRuc{
+    grid-area: ruc;
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: start;}
+.questions1{
+    grid-area: quest1;
+    text-align: center;
+}
+.quest1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lbl1{
+    margin-right: 50px;
+}
+.rbtn2{
+    margin-left: 50px;
+}
+.quest1 input[type="radio"], .quest1 label {
+  margin-right: 5px; /* Espacio entre elementos */
+  flex: 0 0 auto; /* No crecerá ni encogerá, mantendrá el tamaño mínimo */}
+.lbl1, .lbl2 {
+  margin-right: 10px; /* Espacio entre radio buttons y labels */
+}
+
+/* Estilos específicos para los radios */
+.rbtn1,
+.rbtn2 {
+  width: auto; /* Ancho automático según el contenido */
+  height: auto; /* Altura automática según el contenido */
+}
+.questions2{
+    grid-area: quest2;
+    text-align: center;
+}
+.btnR{
+    grid-area: btnRegist;
+    text-align: center;
+    width: 300px;
+    height: 40px;
+    justify-self: center;
+    border-radius: 15px
+
+}
+.info{
+    grid-area: info;
+    text-align: center;
+}
+.back{
+    grid-area: back;
+    text-align: center;
+}
+input{
+    justify-self: center;
+    width: 300px;
+    height: 20px;
+    margin: 5px 0;
+}
+select{
+    justify-self: center;
+    width: 300px;
+    height: 20px
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 720px){
+    .container-register{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0px;
+        border: none;
+        box-shadow: none;
+        border-radius: 0px;
+    }
+    .register-img{
+        justify-content: center;
+        border-radius: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        box-shadow: none;
+    }
+    
+    .register-img img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+    .register{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+}

@@ -1,0 +1,344 @@
+/*Beneficios css*/
+.container-beneficios {
+    margin-top: 3%;
+}
+
+.title-c-b {
+    text-align: center;
+    background-color: rgb(0, 81, 153);
+    color: #fff;
+    padding: 20px 0px;
+    margin: auto;
+}
+
+.rows-beneficios {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 50px;
+
+}
+
+.caja-rows {
+    padding-top: 15px;
+    text-align: center;
+    width: 22.222%;
+    box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, .5);
+    border-radius: 5px;
+    line-height: 1.5;
+
+}
+.caja-rows:hover{
+    box-shadow: 10px 10px 15px 0px  rgb(0, 81, 153,0.5);
+}
+
+.caja-rows img {
+    width: 70px;
+    height: 70px;
+}
+
+.caja-rows p {
+    text-align: justify;
+    padding: 0px 5%;
+}
+
+/*Requisitos css*/
+.container-caja-requisitos {
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+}
+
+.container-title-c-r {
+    text-align: center;
+
+}
+
+.container-title-c-r h1 {
+
+    margin: 0;
+}
+.caja-requisitos ol li{
+    margin: 10px;
+    list-style: none;
+}
+.caja-requisitos ul li:last-child {
+    margin-bottom: 35px; /* Margen inferior de 20px para el último elemento de la lista */
+}
+.caja-requisitos > ul{
+    list-style: none;
+}
+.caja-requisitos ol li::before{
+    content: ""; 
+    background-image: url("../IMG/IconReq.png");
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateX(-120%);
+
+}
+
+
+
+/*.caja-requisitos {
+    /*margin-top: 50px;*/
+
+/*
+}*/
+
+.caja-requisitos-botones {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputFirstR input{
+    width: 200px;
+    height: 50px;
+    margin: 0px 40px;
+    border-radius: 10px;
+}
+.inputFirstR input:hover{
+    background-color: rgb(0, 81, 153,0.5);
+    cursor:pointer;
+    box-shadow:  3px 5px 15px 0px rgb(0, 81, 153,0.5);
+    color: #fff;
+}
+
+.inputSecondR input{
+    width: 200px;
+    height: 40px;
+    margin: 0px 40px;
+    border-radius: 25px;
+}
+.inputSecondR input:hover{
+    background-color: rgba(33, 240, 14, 0.575);
+    cursor:pointer; 
+    box-shadow: 3px 5px 15px 0px  rgba(33, 240, 14, 0.575);
+}
+
+/*Ubicar tu agente css*/
+.container-select {
+    margin: 3%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.caja-select {
+    display: flex;
+    flex-direction: column;
+}
+.caja-btn{
+    align-self: center;
+    text-align: center;
+}
+
+.maps {
+    height: 450px;
+    background-color: antiquewhite;
+    margin: 3%;
+}
+
+/*Material Express css*/
+.caja-material-express {
+    margin: 5% auto;
+    width: 60%;
+    height: auto;
+    border: 2px solid rgb(0, 81, 153,0.5);
+    position: relative;
+    text-align: center;
+    min-height: 400px;
+}
+
+.cajas-materiales {
+    position: absolute;
+    padding: none;
+    border-right: 2px solid rgb(0, 81, 153,0.5);
+    border-bottom: 2px solid rgb(0, 81, 153,0.5);
+}
+
+.caja-material {
+    text-align: center;
+    padding: 0px 15px;
+    cursor: pointer;
+    height: auto; 
+    margin: 0;
+}
+.caja-material:nth-child(1) {
+    border-bottom: 2px solid rgb(0, 81, 153,0.5);
+}
+.caja-material:nth-child(2) {
+    border-bottom: 2px solid rgb(0, 81, 153,0.5);
+}
+.caja-material:hover {
+    background-color:rgb(0, 81, 153,0.5) ;
+}
+
+
+/*.caja-material {
+    /* Establecer los primeros tres elementos .caja-material en posición absoluta */
+/* position: absolute;
+}*/
+
+/* Posicionamiento de los elementos .caja-material */
+/*.caja-material:nth-child(1) {
+    top: 0;
+    left: 0;
+}
+
+.caja-material:nth-child(2) {
+    top: 50px;
+    left: auto;
+}
+
+.caja-material:nth-child(3) {
+    top: 100px;
+    left: auto;
+}
+
+/* Restablecer estilos para los elementos restantes */
+/*.caja-material:nth-child(n+4) {
+    position: static;
+}*/
+
+.img-material {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    display: none;
+}
+.img-material:nth-child(2) {
+display: block;
+}
+.img-material:nth-child(2) img{
+    width: 30%;
+}
+.img-material:nth-child(3) img{
+    width: 60%;
+}
+.img-material:nth-child(4) img{
+    width: 60%;
+}
+
+/*VideoTutoriales*/
+.caja-video-tuto {
+    margin: 3%;
+    display: flex;
+    gap: 25px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.caja-video{
+    width: 33.33%   ;
+    height: 300px;
+}
+.caja-video iframe{
+    width: 90%;
+    height: 80%;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 720px){
+
+    .rows-beneficios{
+        flex-direction: column;
+        align-items: center;
+    }
+    .caja-rows{
+        width: 80%;
+    }
+    .caja-requisitos-botones {
+        display: flex; 
+        flex-wrap:wrap;   
+        margin-bottom: 20px;
+    }
+    .inputSecondR {
+        width: 50%;
+        order: 1;    
+    }
+    .inputFirstR {
+        margin-top: 20px;
+        width: 100%;  
+        order: 2; 
+    }
+    .inputSecondR input{
+        width: 150px;
+        max-width: 200px; 
+        margin: auto;
+    }
+    .inputFirstR input{
+        width: 200px;
+        max-width: 250px; 
+        margin: auto;;  
+    }
+    .title-c-b{
+        padding: 20px 5px;
+    }
+    .container-select{
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 25px 25px;
+        gap: 50px   ;
+    }
+    
+    .caja-select{
+        width: 33.33%;
+        align-items: flex-start;
+        padding-left: 20px;
+        gap: 10px;
+
+    }
+    .caja-select select{
+        width: 100px;
+    }
+    .caja-btn{
+        width: 100%;
+        margin: 20px auto 10px auto;
+    }
+    .caja-btn input{
+        width: 200px;
+        height: 40px;
+        border-radius: 15px;
+    }
+
+    .caja-material-express{
+        width: 90%;
+    }
+    .cajas-materiales{
+        display: flex;
+        position: relative;
+        border-bottom: 2px solid rgb(0, 81, 153,0.5);
+        margin-bottom: 20px;
+        border-right: none;
+        
+    }
+    .caja-material:nth-child(2){
+        border: none;
+    }
+    .caja-material:nth-child(1){
+        border: none;
+    }
+    .caja-material:first-child{
+        border-right: 2px solid rgb(0, 81, 153,0.5);
+    } 
+    .caja-material:last-child{
+        border-left: 2px solid rgb(0, 81, 153,0.5);
+    }  
+
+    .caja-video-tuto{
+        flex-direction: column;
+    }
+    .caja-video{
+        width: 90%;
+    }
+}

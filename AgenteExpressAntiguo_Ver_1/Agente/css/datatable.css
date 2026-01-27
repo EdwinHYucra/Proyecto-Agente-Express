@@ -1,0 +1,4 @@
+/* Quitar el padding de los botones de paginación */
+.dataTables_paginate .paginate_button {
+    padding: 0 !important;  /* Quitar todo el padding de los botones */
+}       

@@ -1,0 +1,122 @@
+﻿footer {
+    margin: 0;
+    height: auto;
+    color: white;
+    background-color: rgb(0, 81, 153);
+}
+
+.pre-footer {
+    text-align: center;
+}
+
+    .pre-footer div {
+        display: flex;
+        justify-content: space-around;
+    }
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+    .footer div {
+        margin: 5px;
+    }
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    background-color: rgb(33, 39, 51);
+}
+.copy-social-media img{
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    margin: 0px 5px;
+}
+
+/*icono flotante*/
+.iconflotante{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 0;
+    justify-content: center;
+    align-items: center;
+}
+.img-wap{
+    width: 30px;
+    height: auto;
+    border: none;
+    background: none;
+    /*border-radius: 50%; /* Ajusta esto según tu preferencia */
+    /*border: 1px solid #fff; /* Opcional: añade un borde blanco al ícono */
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Opcional: añade sombra al ícono */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.img-wap:first-child{
+    width: 100px;
+}
+
+
+/*icono flotante*/
+.iconflotante2{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 10px;
+    top: 10;
+    right: 20px;
+    z-index: 5;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-15%); /* Ajusta para centrar el elemento */
+}
+
+.btnI {
+    text-align: center;
+    margin-right: 5px;
+    width: 100%;
+    height: 60px;
+    background-color: rgb(32, 220, 1);
+    font-weight: bold; /* Hace el texto en negrita */
+    border-radius: 30px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        background-color: rgb(32, 220, 1);
+    }
+    50% {
+        transform: scale(1.2);
+        background-color: rgb(24, 170, 0);
+    }
+    100% {
+        transform: scale(1);
+        background-color: rgb(32, 220, 1);
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 720px){
+    .footer{
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer div {
+        width: 90%;
+        max-width: 710px;
+        
+    }
+}

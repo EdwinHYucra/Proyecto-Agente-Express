@@ -1,0 +1,25 @@
+.info-card{
+  width:260px;
+  padding:30px;
+  border-radius:20px;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.info-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+
+.plan-free{
+  background:linear-gradient(135deg,var(--secondary),var(--accent));
+}
+
+.plan-premium{
+  background:linear-gradient(135deg,var(--accent),var(--primary));
+}
+
+.selected{
+  outline:4px solid var(--accent);
+}

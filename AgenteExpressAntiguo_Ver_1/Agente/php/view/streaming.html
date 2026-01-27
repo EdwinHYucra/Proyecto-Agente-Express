@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartera de Planes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        .tabla-container {
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .paginacion {
+            margin-top: 10px;
+        }
+
+        .paginacion button {
+            margin: 2px;
+            padding: 5px 10px;
+        }
+
+        .paginacion .activo {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .estado-activo {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .estado-pendiente {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .estado-vencido {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul class="nav nav-tabs" id="myTabPD" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Productos Digitales</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Segimiento</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Realizar Pagos</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane"
+                type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Aun por
+                definir</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContentPD">
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+            tabindex="0">
+            <div style="background: linear-gradient(135deg, #f5f7fa, #c3cfe2);">
+                <div class="container my-5">
+                    <h1 class="text-center mb-4">Cartera de Planes</h1>
+                    <div class="row" id="plans-container">
+                        <!-- Cards dynamically generated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+            <h2>Tabla de Planes</h2>
+            <label for="filtroId">🔍 Filtrar por #ID:</label>
+            <input type="text" id="filtroId" placeholder="Ingrese el ID..." />
+
+            <button onclick="exportarCSV()">📁 Exportar a Excel (CSV)</button>
+
+            <table id="tablaPlanes">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Plataforma</th>
+                        <th>Monto</th>
+                        <th>Comisión</th>
+                        <th>Fecha</th>
+                        <th>Finaliza</th>
+                        <th>Estado</th>
+                        <th>Detalle</th>
+                        <th>Beneficiario</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyPlanes"></tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="9" id="totalRegistros">Total: 0 registros</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <script>
+                const planes = [
+                    { id: 1, plataforma: "Netflix", monto: 18.00, comision: 2.00, fecha: "2025-04-01", beneficiario: "Carlos López", estado: "activo" },
+                    { id: 2, plataforma: "Disney+", monto: 14.00, comision: 1.50, fecha: "2025-03-15", beneficiario: "Ana Ruiz", estado: "pendiente" },
+                    { id: 3, plataforma: "HBO Max", monto: 16.00, comision: 1.80, fecha: "2025-02-20", beneficiario: "Luis Perez", estado: "vencido" },
+                    { id: 4, plataforma: "Netflix", monto: 8.00, comision: 1.00, fecha: "2025-04-05", beneficiario: "Marta Gómez", estado: "activo" },
+                ];
+
+                const tbody = document.getElementById("tbodyPlanes");
+                const filtroId = document.getElementById("filtroId");
+                const totalRegistros = document.getElementById("totalRegistros");
+
+                function calcularFechaFinal(fecha) {
+                    const inicio = new Date(fecha);
+                    inicio.setDate(inicio.getDate() + 30);
+                    return inicio.toISOString().split("T")[0];
+                }
+
+                function renderTabla(data) {
+                    tbody.innerHTML = "";
+                    data.forEach(plan => {
+                        const tr = document.createElement("tr");
+
+                        const fechaFinal = calcularFechaFinal(plan.fecha);
+                        let estadoClass = "";
+
+                        switch (plan.estado) {
+                            case "activo": estadoClass = "estado-verde"; break;
+                            case "pendiente": estadoClass = "estado-amarillo"; break;
+                            case "vencido": estadoClass = "estado-rojo"; break;
+                        }
+
+                        tr.innerHTML = `
+          <td>${plan.id}</td>
+          <td>${plan.plataforma}</td>
+          <td>S/. ${plan.monto.toFixed(2)}</td>
+          <td>S/. ${plan.comision.toFixed(2)}</td>
+          <td>${plan.fecha}</td>
+          <td>${fechaFinal}</td>
+          <td class="${estadoClass}">${plan.estado}</td>
+          <td><button onclick="verDetalle(${plan.id})">Ver</button></td>
+          <td>${plan.beneficiario}</td>
+        `;
+
+                        tbody.appendChild(tr);
+                    });
+
+                    totalRegistros.textContent = `Total: ${data.length} registros`;
+                }
+
+                function verDetalle(id) {
+                    const plan = planes.find(p => p.id === id);
+                    if (plan) {
+                        alert(`Detalle de ${plan.plataforma}:\nMonto: S/. ${plan.monto}\nPerfiles: ?\nBeneficiario: ${plan.beneficiario}`);
+                    }
+                }
+
+                filtroId.addEventListener("input", () => {
+                    const filtro = filtroId.value.trim();
+                    if (filtro === "") {
+                        renderTabla(planes);
+                    } else {
+                        const filtrados = planes.filter(p => p.id.toString().includes(filtro));
+                        renderTabla(filtrados);
+                    }
+                });
+
+                function exportarCSV() {
+                    let csv = "ID,Plataforma,Monto,Comisión,Fecha,Finaliza,Estado,Beneficiario\n";
+                    planes.forEach(p => {
+                        const fin = calcularFechaFinal(p.fecha);
+                        csv += `${p.id},${p.plataforma},${p.monto},${p.comision},${p.fecha},${fin},${p.estado},${p.beneficiario}\n`;
+                    });
+
+                    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+
+                    link.setAttribute("href", url);
+                    link.setAttribute("download", "planes.csv");
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+
+                renderTabla(planes);
+            </script>
+        </div>
+        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...
+        </div>
+        <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+            ...</div>
+    </div>
+
+    <!-- Modal de Confirmación de Pedido -->
+    <div class="modal fade" id="confirmOrderModal" tabindex="-1" aria-labelledby="confirmOrderModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmOrderModalLabel">Confirmar Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="mb-3">Selecciona un plan:</h6>
+                    <div id="order-plans" class="d-flex flex-column gap-3">
+                        <!-- Planes dinámicos -->
+                    </div>
+                    <hr>
+                    <h6 class="mb-3">Completa tus datos:</h6>
+                    <form id="orderForm">
+                        <div class="mb-3">
+                            <label for="profileName" class="form-label">Nombre de perfil</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" id="profileName" class="form-control" placeholder="Ej: Mi Perfil">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pin" class="form-label">PIN (4 números)</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="text" id="pin" class="form-control" placeholder="Ej: 4321" maxlength="4">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="whatsapp" class="form-label">WhatsApp</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
+                                <input type="text" id="whatsapp" class="form-control" placeholder="Ej: +51 987654321">
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" id="confirmData" class="form-check-input">
+                            <label for="confirmData" class="form-check-label">Confirmo que mis datos son
+                                correctos</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="finalizeOrder()">FINALIZAR MI PEDIDO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const plans = [
+            {
+                platform: "Netflix",
+                planes: [{ plan: "Básico", price: "S/. 8.00" }],
+                profiles: 1, duration: "1 mes", description: "Plan básico de Netflix", logo: "", image: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+            },
+            { platform: "Disney+", plan: "Estándar", price: "S/. 12.00", profiles: 2, duration: "1 mes", description: "Plan estándar de Disney+", logo: "", image: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" },
+            { platform: "HBO Max", plan: "Premium", price: "S/. 16.00", profiles: 4, duration: "1 mes", description: "Plan premium de HBO Max", logo: "", image: "https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" }
+        ];
+
+        const orderPlans = [
+            { name: "Un perfil Netflix", price: "S/. 9.90", discount: "30%", icon: "" },
+            { name: "TU DUO  Netflix + Disney", price: "S/. 18.90", discount: "40%", icon: "" },
+            { name: "TRIO  Netflix + Disney + Max", price: "S/. 23.90", discount: "50%", icon: "" },
+            { name: "CUARTETO  Netflix + Disney + Max + Prime", price: "S/. 27.90", discount: "60%", icon: "" }
+        ];
+
+        const plansContainer = document.getElementById('plans-container');
+        plans.forEach(plan => {
+            const card = document.createElement('div');
+            card.className = 'col-lg-4 col-md-6 mb-4';
+            card.innerHTML = `
+                <div class="card bg-light shadow-sm border rounded">
+                    <img src="${plan.image}" class="card-img-top" alt="${plan.platform}" style="height: 150px; object-fit: contain;">
+                    <div class="card-body text-center">
+                        <div class="mb-3" style="font-size: 2rem;">${plan.logo}</div>
+                        <h5 class="card-title">${plan.platform}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${plan.plan}</h6>
+                        <p class="card-text">${plan.description}</p>
+                        <ul class="list-unstyled">
+                            <li><strong>Precio:</strong> ${plan.price}</li>
+                            <li><strong>Perfiles:</strong> ${plan.profiles}</li>
+                            <li><strong>Duración:</strong> ${plan.duration}</li>
+                        </ul>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmOrderModal">Hacer Pedido</button>
+                    </div>
+                </div>
+            `;
+            plansContainer.appendChild(card);
+        });
+
+        const orderPlansContainer = document.getElementById('order-plans');
+        orderPlans.forEach(plan => {
+            const planElement = document.createElement('div');
+            planElement.className = 'card p-3 shadow-sm';
+            planElement.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <span class="me-3" style="font-size: 1.5rem;">${plan.icon}</span>
+                    <div>
+                        <h6 class="mb-0">${plan.name}</h6>
+                        <small>${plan.price} - Ahorra ${plan.discount}</small>
+                    </div>
+                </div>
+            `;
+            orderPlansContainer.appendChild(planElement);
+        });
+
+        function finalizeOrder() {
+            const profileName = document.getElementById('profileName').value;
+            const pin = document.getElementById('pin').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const confirmData = document.getElementById('confirmData').checked;
+
+            if (!profileName || !pin || !whatsapp || !confirmData) {
+                alert("Por favor, completa todos los campos y confirma los datos.");
+                return;
+            }
+
+            const message = `Hola, deseo realizar un pedido con los siguientes datos:
+- Nombre de perfil: ${profileName}
+- PIN: ${pin}
+- WhatsApp: ${whatsapp}`;
+
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

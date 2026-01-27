@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="stylesheet" href="../CSS/register.css">
+    <link rel="icon" href="../IMG/icon.png" type="image/png">
+    <!--<script src="https://code.jquery.com/jquery-3.6.0.js"></script>-->
+    <title>Agente Express</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <form action="./Registrar/registrarCliente.php" method="post">
+        <section class="container-register">
+
+            <div class="register-img"><a href="/index.html"><img src="../IMG/Logo-Oficial.png" alt=""></a></div>
+            <div class="register">
+                <h1 class="title-register">Registro Express</h1>
+                <div class="contEmail">
+                    <label for="">Correo:(*)</label><br>
+                    <input name="txtEmal" class="txtEmal" type="email" placeholder="ejemplo@.com" required>
+                </div>
+                <div class="contName">
+                    <label for="">Nombres:(*)</label>
+                    <input name="txtName" class="txtName" type="text" placeholder="Ejemplo" required>
+                </div>
+                <div class="contAP">
+                    <label for="">Apellido Paterno:(*)</label>
+                    <input name="txtLastnameP" class="txtLastnameP" type="text" placeholder="Ejemplo" required>
+                </div>
+                <div class="contAM">
+                    <label for="">Apellido Materno:(*)</label>
+                    <input name="txtLastnameM" class="txtLastnameM" type="text" placeholder="Ejemplo" required>
+                </div>
+                <div class="contDNI">
+                    <label for="">DNI:(*)</label>
+                    <input name="txtDNI" class="txtDNI" type="text" placeholder="" required>
+                </div>
+                <div class="contPais">
+                    <label for="">Pais:(*)</label>
+                    <select name="slcpais" id="pais">
+                    </select>
+                </div>
+                <div class="contDepart">
+                    <label for="">Departamento:(*)</label>
+                    <select name="slcdepa" id="departamento">
+                    </select>
+                </div>
+                <div class="contProv">
+                    <label for="">Provincia:(*)</label>
+                    <select name="slcprov" id="provincia">
+                    </select>
+                </div>
+                <div class="contDist">
+                    <label for="">Distrito:(*)</label>
+                    <select name="slcdist" id="distrito">
+                    </select>
+                </div>
+                <div class="contPhone">
+                    <label for="">Celular:(*)</label>
+                    <input name="txtPhone" class="txtPhone" type="text" placeholder="" required>
+                </div>
+                <div class="contTB">
+                    <label for="">Tipo de Negocio:(*)</label>
+                    <select name="slcTypeBusiness" id="tiponegocio">
+
+                    </select>
+                </div>
+                <div class="contDN">
+                    <label for="">Dirección del Negocio:(*)</label>
+                    <input name="txtAddressBusiness" class="txtAddressBusiness" type="text" placeholder="" required>
+                </div>
+                <div class="contRuc">
+                    <label for="">Ruc:</label>
+                    <input name="txtRUC" class="txtRUC" type="text" placeholder="" >
+                </div>
+                <div class="questions1">
+                    <p>¿Tiene Licencia de Funcionamiento?:(*)</p>
+                    <div class="quest1">
+                        <input class="rbtn1" name="q1" id="q1a1" type="radio" placeholder="contraseña" value=1>
+                        <label class="lbl1" for="q1a1">Si</label>
+                        <input class="rbtn2" name="q1" id="q1a2" type="radio" placeholder="contraseña" value=0>
+                        <label class="lbl2" for="q1a2">No</label>
+                    </div>
+                </div>
+                <div class="questions2">
+                    <p>¿Actualmente Forma parte de una Red de Agentes?:(*)</p>
+                    <div class="quest1">
+                        <input class="rbtn1" name="q2" id="q2a1" type="radio" placeholder="contraseña" value=1>
+                        <label class="lbl1" for="q2a1">Si</label>
+                        <input class="rbtn2" name="q2" id="q2a2" type="radio" placeholder="contraseña" value=0>
+                        <label class="lbl2" for="q2a2">No</label>
+                    </div>
+                </div>
+                <hr>
+                <button class="btnR" type="submit">Registrarse</button>
+                <a class="back" href="login.html">Regresar</a>
+            </div>
+        </section>
+    </form>
+    <script>
+        //ObtenerPaises
+        $(document).ready(function() {
+            
+            $.ajax({
+                type: 'POST',
+                url: '/Registrar/listarNegocios.php',
+                dataType:'json',
+                success: function (response){
+                    var option = '<option value="Null">Seleccionar</option>';
+                    $.each(response, function(index, value){
+                        option += '<option value="'+value.id+'">'+value.tipo_neg+'</option>';
+                    });
+                    $('#tiponegocio').html(option);
+                },
+            }).fail(function(jqXHR,textStatus, errorThrown){
+                console.log(jqXHR, textStatus, errorThrown);
+            });
+            
+            
+            $.ajax({
+                type: 'POST',
+                url: '/Registrar/listarPais.php',
+                dataType: 'json',
+                success: function (response){
+                    var options = '<option value="Null">Seleccionar</option>';
+                    $.each(response, function(index, value){
+                        options = '<option value="'+value.id_pais+'">'+value.nombre_pais+'</option>';
+                    });
+                    $('#pais').html(options);
+                },
+            }).fail(function(jqXHR,textStatus, errorThrown){
+                console.log(jqXHR);
+            });
+        
+            /*let slcdepartamentos = document.querySelector('#departamento');*/
+
+            $.ajax({
+                type: 'POST',
+                url: '/Registrar/listarDepartamentos.php',
+                dataType: 'json',
+                success: function (response){
+
+                    var options = '<option value="Null">Seleccionar</option>';
+                    $.each(response, function(index, value){
+                        options += '<option value="'+value.idDepa+'">'+value.Departamento+'</option>';
+                    });
+                    $('#departamento').html(options);
+                    $('#provincia').html('<option value="">Seleccionar</option>');
+                    $('#distrito').html('<option value="">Seleccionar</option>');
+                },
+            }).fail(function(jqXHR,textStatus, errorThrown){
+                console.log(jqXHR);
+            });
+        });
+
+        $('#departamento').on('change',function(){
+            let idDepa = $(this).val();
+            //const setid = { "id": idDepa};
+            $.ajax({
+                type: 'POST',
+                url: '/Registrar/listarProvincias.php',
+                data: {"setid":idDepa},
+                dataType: 'json',
+                success: function (response){
+                    var options = '<option value="Null">Seleccionar</option>';
+                    $.each(response, function(index, value){
+                        options += '<option value="'+value.idProv+'">'+value.Provincia+'</option>';
+                    });
+                    $('#provincia').html(options);
+                    $('#distrito').html('<option value="">Seleccionar</option>');
+                },
+            }).fail(function(jqXHR,textStatus, errorThrown){
+                console.log(jqXHR);
+            });
+        });
+
+        $('#provincia').on('change',function(){
+            let idprov =$(this).val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/Registrar/listarDistritos.php',
+                data: {"setid":idprov},
+                dataType: 'json',
+                success: function (response){
+                    var options = '<option value="Null">Seleccionar</option>';
+                    $.each(response, function(index, value){
+                        options += '<option value="'+value.idDist+'">'+value.Distrito+'</option>';
+                    });
+                    $('#distrito').html(options);
+                },
+            }).fail(function(jqXHR,textStatus, errorThrown){
+                console.log(jqXHR);
+            });
+        });
+    </script>
+</body>
+
+</html>

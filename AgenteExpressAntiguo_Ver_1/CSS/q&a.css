@@ -1,0 +1,39 @@
+.title-page-qya{
+    text-align: center;
+    color:  rgb(31,37,158);
+    margin: 50px 0;
+}
+.container-qya{
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 10px 15%;
+    margin-bottom: 10%;
+}
+.caja-preguntas{
+    /*/border: 1px solid black;
+    
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;*/
+    border-bottom: 1px solid black;
+    padding-left: 15px;
+}
+.caja-preguntas:nth-child(6){
+    border-bottom: none;
+}
+.caja-respuesta{
+    display: none;
+    transition: display 5s ease; 
+}
+.caja-respuesta p{
+    text-align: justify;
+    padding-left: 3%;
+    padding-right: 20px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 720px){
+    .container-qya{
+        width: 90%;
+        margin: 20px auto;
+    }
+    
+}

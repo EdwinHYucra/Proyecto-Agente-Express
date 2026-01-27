@@ -1,0 +1,24 @@
+[08-Mar-2025 20:25:41 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: PROCEDURE factura3_agenteexpress_db.sp_ObtenerMontosComisiones does not exist in /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php:44
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php(44): mysqli_stmt->execute()
+#1 /home/factura3/agenteexpress.com/Agente/index.php(15): ObtenerComisiones()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php on line 44
+[09-Mar-2025 00:11:33 UTC] PHP Warning:  Undefined array key "data" in /home/factura3/agenteexpress.com/Agente/index.php on line 134
+[09-Mar-2025 00:11:33 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/factura3/agenteexpress.com/Agente/index.php on line 134
+[09-Mar-2025 00:11:34 UTC] PHP Warning:  Undefined array key "data" in /home/factura3/agenteexpress.com/Agente/index.php on line 134
+[09-Mar-2025 00:11:34 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/factura3/agenteexpress.com/Agente/index.php on line 134
+[19-Aug-2025 15:07:30 UTC] PHP Warning:  mysqli::__construct(): Error while reading greeting packet. PID=296381 in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[19-Aug-2025 15:07:30 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: MySQL server has gone away in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php(24): open_connection()
+#2 /home/factura3/agenteexpress.com/Agente/index.php(15): ObtenerComisiones()
+#3 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[02-Sep-2025 07:06:57 UTC] PHP Warning:  Undefined array key "data" in /home/factura3/agenteexpress.com/Agente/index.php on line 388
+[02-Sep-2025 07:06:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/factura3/agenteexpress.com/Agente/index.php on line 388
+[04-Sep-2025 03:12:11 UTC] PHP Warning:  Undefined array key "data" in /home/factura3/agenteexpress.com/Agente/index.php on line 388
+[04-Sep-2025 03:12:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/factura3/agenteexpress.com/Agente/index.php on line 388
+[05-Sep-2025 03:12:02 UTC] PHP Warning:  Undefined array key "data" in /home/factura3/agenteexpress.com/Agente/index.php on line 388
+[05-Sep-2025 03:12:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/factura3/agenteexpress.com/Agente/index.php on line 388

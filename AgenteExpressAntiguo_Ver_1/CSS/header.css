@@ -1,0 +1,265 @@
+﻿.title {
+    
+    display: flex;
+    justify-content: space-between; /* Alinea el primer elemento a la izquierda y el segundo a la derecha */
+    align-items: center; /* Centra los elementos verticalmente */
+    text-align: center; /* Centra el texto del párrafo */
+    width: auto;
+    background-color: rgb(68, 167, 22);
+    color: #FFF;
+    
+    
+    
+    /*display: flex;
+    text-align: center;
+    width: auto;
+    height: auto;
+    background-color: rgb(68, 167, 22);
+    color: #FFF;
+    
+    /*justify-content: center;
+    /*align-items: center;*/
+}
+
+    .title p {
+        padding: 8px 0;
+        font-family: "Madimi One";
+        flex: 1; /* Permite que el párrafo ocupe todo el espacio disponible */
+        margin: 0; /* Elimina los márgenes por defecto */
+    }
+
+header {
+    /*position: fixed;*/
+    position: sticky;
+    display: flex;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    /*width: 100%;*/
+    
+    justify-content: space-around;
+    transition: 0.1s;
+    padding: 0px;
+    z-index: 999;
+    background-color: rgb(0, 81, 153);
+}
+
+.logo-header {
+    padding-top: 5px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 81, 153);
+
+}
+
+header ul {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+}
+
+    header ul li {
+        list-style: none;
+        
+    }
+
+        header ul  li  a {
+            /*font-family: ;*/
+            margin: 0px 15px 0px 0px;
+            text-decoration: none;
+            color: black;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: 0.3s;
+            color: white;
+            
+            
+        }
+        header nav ul li ul{
+            
+            margin-top: 8px;
+            background-color: rgb(0, 81, 153);
+            display: none;
+            position: absolute;
+            border-radius: 5px;  
+            box-shadow: -2px -2px 2px 2px rgba(0, 0, 0,0.25),
+            2px 2px 2px 2px rgba(0, 0, 0,0.25);    
+            backdrop-filter: blur(10px);
+
+        }
+        header nav ul li ul a {
+            white-space: nowrap; /* Evitar saltos de línea */
+            display: block; /* Mostrar los enlaces como bloques */
+            /*padding: 8px px; /* Ajustar el espaciado interno */
+            text-decoration: none;
+            color: white;
+            
+        }
+        header nav ul li ul li{
+            margin: 10px 0px;
+            
+        }
+        header ul li:hover > ul{
+            display: block;  
+            margin: 3px 0px;
+            padding: 10px;
+
+        }
+
+        header > nav > ul > li > a:hover{
+            border-bottom: #FFF solid 2px;
+
+        }
+
+.icon-bar{
+    display: none;
+}
+.icon-login{
+    display: none;
+}
+/*.abajo {
+    position: fixed;
+    background-color: rgb(0, 81, 153,0.75);
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+}*/
+
+/*.container {
+    /*margin-top: 5rem;*/
+    /*transition: all 0s ease;
+}*/
+.desaparecer {
+    display: none;
+}
+.linkFac{
+    font-family: "Madimi One";
+    text-decoration: none;
+    color: #FFF;
+    justify-self:end;
+    white-space: nowrap; /* Evita que el enlace se rompa en varias líneas */
+    position: relative; /* Posición relativa para el pseudo-elemento */
+    padding-right: 30px; 
+    /*align-self: flex-end;*/
+    
+}
+.linkFac::before{
+
+    content: "";
+    background-image: url(../IMG/iconFact.png);
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transform: translateX(-120%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+
+
+@media only screen and (min-width: 320px) and (max-width: 720px){
+
+    .title{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 5px;
+    }
+    .linkFac{
+        align-self: flex-end;
+        padding-right: 50px;
+    }
+    .icon-login{
+        display: flex;
+    }
+    .icon-login img{
+        width: 20px;
+        height: 20px;
+    }
+    .icon-login-img{
+        display: none;
+    }
+    .icon-bar{
+        margin: auto;
+        display: block;
+        width: 50px;
+        height: 50px;
+        align-self: center;
+        /*transition: transform 0.3s ease, opacity 0.3s ease;*/
+    }
+    .icon-bar:hover {
+        align-self: auto; /* Hacemos que el icono desaparezca al mismo tiempo */
+    }
+
+    .icon-bar:hover + nav,
+    nav:hover {
+        display: flex;
+    }
+    nav{
+        display: none;
+        justify-content: left;
+        top: 0; /* Ajusta según la altura de tu icono-bar */
+        left: 30px;
+        background-color: rgb(0, 81, 153); /* Puedes cambiar el color de fondo */
+        padding: 10px;
+    }
+    
+    header > a{
+        align-self: center;
+        justify-items: right;
+        /*width: 80px;
+        height: 80px;*/
+        margin: auto; /* Esto empujará el enlace a la derecha */
+    }
+    header{
+        max-width: 720px;
+        position: sticky;
+        justify-content: space-between;
+        background-color: rgb(0, 81, 153);
+        
+    }
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: left;
+    }
+    
+    .prelast{
+        margin: 24px 0px 10px 0px;
+    }
+
+    header > nav > ul > li:last-child{
+        margin: 0px 0px 24px 0px ;
+    }
+
+
+    header nav ul li:hover > ul{
+        gap: 0px;
+        position: relative;
+        display: flex;  
+        margin: 3px 0px;
+        padding: 10px;
+        transition: 0.5s;
+        border: none;
+        box-shadow: none;
+    }
+    header nav ul li ul{
+        margin-top: 8px;
+        background-color: rgb(0, 81, 153);
+        display: none;
+        backdrop-filter: blur(10px);
+
+    }
+    header nav ul li ul li{
+        margin: 0px;  
+    }
+
+}

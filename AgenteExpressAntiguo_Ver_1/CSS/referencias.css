@@ -1,0 +1,65 @@
+/*Entidades y Pagos*/
+.title-eb {
+    padding: 10px 0px;
+    text-align: center;
+}
+
+.bg-g {
+    background-color: rgb(0, 81, 153);
+}
+
+.contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+.silder-img{
+    margin: auto;
+    display: flex;
+    max-width: 1200px;
+    height: auto;
+    width: 100%; 
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+    scroll-behavior: smooth;
+    transition: transform 5s ease;
+}
+.silder-img .cont-img{
+    width: 33.33%;
+    object-fit:contain;
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    
+}
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    50% {
+        transform: translateX(calc(-33.33% * 5));
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+
+.slider-img {
+    animation: scroll 5s linear infinite;
+}
+
+  .cont-img {
+            margin: 20px;
+        }
+        
+.cont-img img{
+    margin: 20px;
+    max-width: 750px;
+    max-height: 750px;}
+    
+    

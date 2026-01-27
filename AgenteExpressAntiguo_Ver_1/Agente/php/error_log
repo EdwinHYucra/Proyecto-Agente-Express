@@ -1,0 +1,473 @@
+[09-Mar-2025 00:12:58 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Tipo de operaci髇 no v醠ido: DEP脫SITOS in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:117
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(117): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 117
+[09-Mar-2025 00:15:19 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Tipo de operaci髇 no v醠ido: DEP脫SITOS in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:117
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(117): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 117
+[09-Mar-2025 00:18:31 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Tipo de operaci髇 no v醠ido: DEP脫SITOS in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:117
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(117): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 117
+[09-Mar-2025 02:38:03 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php on line 102
+[09-Mar-2025 02:38:03 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php on line 214
+[09-Mar-2025 03:19:27 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php on line 214
+[09-Mar-2025 03:19:27 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php on line 102
+[10-Mar-2025 16:21:55 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Tipo de operaci髇 no v醠ido: DEP脫SITOS in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:117
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(117): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 117
+[10-Mar-2025 16:42:52 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'banco_destino' in 'field list' in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:119
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(119): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 119
+[10-Mar-2025 16:48:52 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'dni_beneficiario' in 'field list' in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:119
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(119): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 119
+[10-Mar-2025 17:11:18 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Tipo de operaci贸n no v谩lido: PAGAR TARJETA DE CR脡DITO in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:119
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(119): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 119
+[10-Mar-2025 17:16:58 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Tipo de operaci贸n no v谩lido:  in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:119
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(119): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 119
+[10-Mar-2025 17:22:37 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Datos de pago de tarjeta faltantes in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:119
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(119): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 119
+[10-Mar-2025 17:32:04 UTC] PHP Parse error:  syntax error, unexpected token "echo", expecting "," or ";" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 102
+[10-Mar-2025 17:33:04 UTC] PHP Parse error:  syntax error, unexpected token "echo", expecting "," or ";" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 102
+[10-Mar-2025 17:35:03 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Datos de pago de tarjeta faltantes in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:120
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(120): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 120
+[10-Mar-2025 17:39:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'titular_tarjeta' in 'field list' in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:120
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(120): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 120
+[10-Mar-2025 17:44:15 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:87
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 87
+[10-Mar-2025 17:50:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:87
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 87
+[10-Mar-2025 18:03:13 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Operaci贸n duplicada in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:120
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(120): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 120
+[10-Mar-2025 18:18:30 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:92
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 92
+[10-Mar-2025 19:30:54 UTC] PHP Parse error:  syntax error, unexpected token "=" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 89
+[10-Mar-2025 19:31:20 UTC] PHP Parse error:  syntax error, unexpected token "=" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 89
+[10-Mar-2025 19:32:38 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:92
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 92
+[10-Mar-2025 19:33:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:92
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 92
+[10-Mar-2025 19:39:32 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'nro_tarjeta' in 'field list' in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:140
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(140): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 140
+[10-Mar-2025 19:47:05 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'tipo_retiro' at row 1 in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:140
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(140): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 140
+[10-Mar-2025 19:52:07 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Operaci贸n duplicada in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:140
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(140): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 140
+[10-Mar-2025 21:58:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Operaci贸n duplicada in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:140
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(140): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 140
+[21-Apr-2025 23:17:26 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Operaci贸n duplicada in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:152
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(152): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 152
+[01-May-2025 11:49:55 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[01-May-2025 11:49:55 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[13-May-2025 18:54:39 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[13-May-2025 18:54:39 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[15-May-2025 00:44:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Operaci贸n duplicada in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:152
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(152): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 152
+[15-May-2025 00:44:27 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Operaci贸n duplicada in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:152
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(152): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 152
+[15-May-2025 14:06:51 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[15-May-2025 14:07:09 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[21-May-2025 23:40:27 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[21-May-2025 23:40:27 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[24-May-2025 22:29:19 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[24-May-2025 22:29:22 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[26-May-2025 14:55:34 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[26-May-2025 14:55:34 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[27-May-2025 02:26:31 UTC] PHP Warning:  Undefined array key "datosOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 85
+[27-May-2025 02:26:31 UTC] PHP Warning:  Undefined array key "NroCuentaOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 92
+[27-May-2025 03:08:43 UTC] PHP Warning:  Undefined array key "datosOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 85
+[27-May-2025 03:08:43 UTC] PHP Warning:  Undefined array key "NroCuentaOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 92
+[03-Jun-2025 18:39:16 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[03-Jun-2025 18:39:24 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[21-Jun-2025 16:54:43 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[21-Jun-2025 16:54:43 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[08-Jul-2025 06:55:34 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[08-Jul-2025 06:55:34 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[08-Jul-2025 09:00:53 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[08-Jul-2025 09:00:53 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[16-Jul-2025 12:12:15 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[16-Jul-2025 12:12:15 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[21-Jul-2025 05:12:27 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[21-Jul-2025 05:12:27 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[23-Jul-2025 18:15:32 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[23-Jul-2025 18:15:32 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[26-Jul-2025 03:06:08 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[26-Jul-2025 03:06:08 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[31-Jul-2025 15:54:13 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[31-Jul-2025 15:54:26 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[31-Jul-2025 20:29:14 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/caja_chica.php on line 12
+[31-Jul-2025 20:30:04 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[07-Aug-2025 21:12:35 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[07-Aug-2025 21:12:35 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[07-Aug-2025 22:33:38 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[07-Aug-2025 22:33:38 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[13-Aug-2025 19:34:45 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[13-Aug-2025 19:34:45 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[19-Aug-2025 19:20:35 UTC] PHP Warning:  Undefined array key "datosOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 85
+[19-Aug-2025 19:20:35 UTC] PHP Warning:  Undefined array key "NroCuentaOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 92
+[23-Aug-2025 14:31:52 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[23-Aug-2025 14:31:52 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[28-Aug-2025 14:50:32 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[28-Aug-2025 14:50:32 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[28-Aug-2025 15:30:06 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[28-Aug-2025 15:30:06 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[03-Sep-2025 19:49:51 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/caja_chica.php on line 12
+[03-Sep-2025 19:49:54 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/caja_chica.php on line 12
+[03-Sep-2025 19:50:46 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/caja_chica.php on line 12
+[10-Sep-2025 10:41:14 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[10-Sep-2025 10:41:14 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[13-Sep-2025 14:34:32 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[13-Sep-2025 14:34:32 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[13-Sep-2025 19:17:15 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[13-Sep-2025 19:17:15 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[16-Sep-2025 00:18:46 UTC] PHP Warning:  Undefined array key "datosOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 85
+[16-Sep-2025 00:18:46 UTC] PHP Warning:  Undefined array key "NroCuentaOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 92
+[18-Sep-2025 19:11:02 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[24-Sep-2025 21:46:26 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[24-Sep-2025 21:46:26 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[24-Sep-2025 23:58:25 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[24-Sep-2025 23:58:25 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[29-Sep-2025 08:29:07 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[29-Sep-2025 08:29:07 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[29-Sep-2025 16:57:13 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:118
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 118
+[29-Sep-2025 16:57:24 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:118
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 118
+[29-Sep-2025 16:57:30 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:118
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 118
+[29-Sep-2025 16:57:46 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:118
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 118
+[29-Sep-2025 16:58:11 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:118
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 118
+[29-Sep-2025 16:58:21 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:118
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 118
+[29-Sep-2025 16:58:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:118
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 118
+[29-Sep-2025 16:58:38 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:118
+Stack trace:
+#0 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 118
+[30-Sep-2025 10:18:21 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[30-Sep-2025 10:18:21 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[05-Oct-2025 15:52:55 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[05-Oct-2025 15:52:55 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[06-Oct-2025 16:50:45 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[06-Oct-2025 16:50:45 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[06-Oct-2025 18:20:32 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[06-Oct-2025 18:20:32 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[08-Oct-2025 01:46:59 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[08-Oct-2025 01:46:59 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[08-Oct-2025 02:37:50 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[08-Oct-2025 02:37:50 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[14-Oct-2025 18:43:02 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[14-Oct-2025 18:43:02 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[16-Oct-2025 08:44:37 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[16-Oct-2025 08:44:37 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[27-Oct-2025 15:56:26 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[27-Oct-2025 15:56:26 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[30-Oct-2025 00:29:08 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[30-Oct-2025 00:29:08 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[30-Oct-2025 02:49:39 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[30-Oct-2025 02:49:39 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[30-Oct-2025 21:11:29 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/retornarUsuario.php on line 5
+[31-Oct-2025 10:35:03 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[31-Oct-2025 10:35:03 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[01-Nov-2025 17:55:15 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php on line 102
+[01-Nov-2025 17:55:15 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/consultacomisiones.php on line 214
+[01-Nov-2025 17:55:15 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/caja_chica.php on line 12
+[04-Nov-2025 12:55:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 12:55:24 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 12:56:19 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 12:56:33 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 12:56:56 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 12:57:06 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 12:57:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 12:57:43 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 13:08:11 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 13:28:25 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 14:16:15 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 16:30:49 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[04-Nov-2025 19:51:34 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[05-Nov-2025 01:28:45 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[05-Nov-2025 12:48:42 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[05-Nov-2025 12:48:42 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[05-Nov-2025 12:48:42 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[05-Nov-2025 13:53:30 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[05-Nov-2025 22:55:28 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[06-Nov-2025 14:10:13 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[07-Nov-2025 19:14:45 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[07-Nov-2025 19:16:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[07-Nov-2025 19:20:04 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[07-Nov-2025 19:23:48 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[07-Nov-2025 19:34:22 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[07-Nov-2025 20:52:53 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'paul.mygraceserver.com' (using password: YES) in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[08-Nov-2025 15:45:07 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: PROCEDURE factura3_agenteexpress_db.verificar_credenciales2 does not exist in /home/factura3/agenteexpress.com/Agente/php/login.php:31
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/login.php(31): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/login.php on line 31
+[08-Nov-2025 21:55:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: PROCEDURE factura3_agenteexpress_db.verificar_credenciales2 does not exist in /home/factura3/agenteexpress.com/Agente/php/login.php:31
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/login.php(31): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/login.php on line 31
+[08-Nov-2025 23:34:58 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: PROCEDURE factura3_agenteexpress_db.verificar_credenciales2 does not exist in /home/factura3/agenteexpress.com/Agente/php/login.php:31
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/login.php(31): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/login.php on line 31
+[10-Nov-2025 20:04:59 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'localhost' to database 'factura3_agenteexpress_db' in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[11-Nov-2025 18:34:07 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'localhost' to database 'factura3_agenteexpress_db' in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[11-Nov-2025 19:33:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'localhost' to database 'factura3_agenteexpress_db' in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[11-Nov-2025 19:33:24 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'factura3_default_page'@'localhost' to database 'factura3_agenteexpress_db' in /home/factura3/agenteexpress.com/Agente/php/config.php:13
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/config.php(13): mysqli->__construct()
+#1 /home/factura3/agenteexpress.com/Agente/php/login.php(12): open_connection()
+#2 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/config.php on line 13
+[14-Nov-2025 02:40:42 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[14-Nov-2025 02:40:42 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[15-Nov-2025 13:11:39 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[15-Nov-2025 13:11:39 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[20-Nov-2025 11:45:40 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Operaci贸n duplicada in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php:152
+Stack trace:
+#0 /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php(152): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 152
+[21-Nov-2025 14:13:56 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[21-Nov-2025 14:13:56 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[21-Nov-2025 14:17:27 UTC] PHP Warning:  Undefined array key "datosOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 85
+[21-Nov-2025 14:17:27 UTC] PHP Warning:  Undefined array key "NroCuentaOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 92
+[23-Nov-2025 08:49:21 UTC] PHP Warning:  Undefined array key "datosOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 85
+[23-Nov-2025 08:49:21 UTC] PHP Warning:  Undefined array key "NroCuentaOperacion" in /home/factura3/agenteexpress.com/Agente/php/GuardarOperacionCashIn.php on line 92
+[23-Nov-2025 12:49:33 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/caja_chica.php on line 12
+[23-Nov-2025 12:49:35 UTC] PHP Warning:  Undefined array key "cod_agen" in /home/factura3/agenteexpress.com/Agente/php/caja_chica.php on line 12
+[29-Nov-2025 04:21:10 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[29-Nov-2025 04:21:10 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[30-Nov-2025 16:07:04 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[30-Nov-2025 16:07:04 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[14-Dec-2025 07:50:33 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[14-Dec-2025 07:50:33 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[15-Dec-2025 11:58:53 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[15-Dec-2025 11:58:53 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[23-Dec-2025 20:04:42 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[23-Dec-2025 20:04:42 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[29-Dec-2025 03:54:22 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[29-Dec-2025 03:54:22 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[30-Dec-2025 03:50:47 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[30-Dec-2025 03:50:47 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[13-Jan-2026 03:30:42 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[13-Jan-2026 03:30:42 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[14-Jan-2026 07:45:29 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[14-Jan-2026 07:45:29 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
+[23-Jan-2026 17:55:57 UTC] PHP Warning:  Undefined array key "correo" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 8
+[23-Jan-2026 17:55:57 UTC] PHP Warning:  Undefined array key "clave" in /home/factura3/agenteexpress.com/Agente/php/login.php on line 9
