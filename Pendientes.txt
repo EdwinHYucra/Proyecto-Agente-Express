@@ -1,0 +1,147 @@
+
+
+
+- Funcionalidad de la cuenta free
+
+Venta Soat
+recargas de celulares (posible demora 10 min)
+servicio de Streaming
+Paga de líneas de Operadores. (posible demora 10 min)
+
+Sin interacción al bcp...
+
+
+Fases
+1 validación de ruc
+
+- validar ruc botón buscar ruc
+- agente (Ruc razón social, condición, estado del contribuyente)
+- comercion, via [ALM.
+AV
+BL.
+BLV
+CALLE
+CARRETERA
+ESQUINA
+JR
+MLC.
+OTRO
+OVALO
+PARQUE
+PASAJE
+PLAZA
+PROL
+TRO.
+URB.
+VIA.] nombre de la via y dirección, ubicación, referencia
+
+- adicional denominacion comercial, trabaja con red de agentes? Si escribrir que red de agentes, cuenta con internet? si colocan no detener, régimen tributario los 4 , tipo de negocio o rubro de negocio 
+
+2 Envio de Requisitos 
+ copia del DNI subir parte delantera o posterior
+ copia de recibió de servicios (agua luz y contrato de alquiler)
+ fotos del negocio 2 mínimo
+ ubicación real () captura
+
+3 Contrato va ser términos y condiciones y política de datos.
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+admin resive las peticiones, en estados pendiente completado
+
+
+
+
+
+
+Cambios para pasar de free a premiun, en la tabla usuarios tener 
+mas de un correo vinculado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1 Para empezar! Definir Roles. Permisos y privilegios
+
+Base de datos
+
+Empleados
+
+
+2 Versión Free y Paga, funcionales
+
+
+3 Registo
+DNI Titular
+RUC Ficha 
+Fotos del negocio
+Recibo de Luz o Agua, contrato de alquiler
+Ubicación de local comerciañ
+
+
+Nuevo modulo de registro
+
+app móvil versión gratuita
