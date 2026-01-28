@@ -8,7 +8,7 @@ export default function ContratoAfiliacionPage() {
     <RegistroLayout>
       <StepRegistro activeStep={2} />
       <h1 style={{ textAlign: "center", marginBottom: 20 }}>
-        ¡Bienvenido a la familia KasNet!
+        ¡Bienvenido a la familia de Agente Express!
       </h1>
 
       <p style={{ marginBottom: 20 }}>

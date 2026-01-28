@@ -7,7 +7,7 @@ export default function BienvenidaPage() {
     <div style={{ padding: 40 }}>
 
       <h2 style={{ textAlign: "center" }}>
-        ¡Bienvenido a la familia KasNet!
+        ¡Bienvenido a la familia de Agente Express!
       </h2>
 
       <p style={{ marginTop: 20 }}>

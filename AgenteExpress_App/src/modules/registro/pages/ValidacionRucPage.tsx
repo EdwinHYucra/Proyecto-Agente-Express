@@ -3,13 +3,17 @@ import { AccordionComponent, AccordionItemsDirective, AccordionItemDirective }
 
 import { TextBoxComponent } from "@syncfusion/ej2-react-inputs";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
-
 import StepRegistro from "../components/StepRegistro";
+import HeaderSistema from "../../shared/HeaderSistema";
+import FooterSistema from "../../shared/FooterSistema";
 
 export default function ValidacionRucPage() {
 
     return (
+        <>
+        <HeaderSistema />
         <div style={{ padding: 40 }}>
+            
             <StepRegistro activeStep={0} />
 
 
@@ -48,5 +52,7 @@ export default function ValidacionRucPage() {
             </div>
 
         </div>
+        <FooterSistema />
+        </>
     );
 }
