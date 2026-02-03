@@ -18,11 +18,13 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/ping', function () {
-    return response()->json([
-        'status' => true,
-        'message' => 'API funcionando'
-    ]);
+Route::post('/auth/registrar', [AuthController::class, 'registrar']);
+Route::post('/auth/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+    Route::get('/auth/yo', [AuthController::class, 'yo']);
 });
