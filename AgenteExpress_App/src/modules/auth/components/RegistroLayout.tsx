@@ -1,67 +1,109 @@
 import type { ReactNode } from "react";
-import { Button } from "@/components/ui/button";
+import { Box, Paper, Typography, Button } from "@mui/material";
+import logo from "../../../assets/logo.png";
 
 type Props = {
-  logoSrc: string;
-  imagenSrc?: string;
   children: ReactNode;
-  onVerRequisitos?: () => void;
 };
 
-export default function RegistroLayout({ logoSrc, imagenSrc, children, onVerRequisitos }: Props) {
+export default function RegistroLayout({ children }: Props) {
   return (
-    <div className="min-h-dvh bg-slate-50">
-      <div className="mx-auto max-w-[1280px] px-4 py-6 sm:py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Panel Izquierdo */}
-          <aside className="lg:col-span-4">
-            <div className="h-full rounded-[28px] overflow-hidden shadow-sm border border-slate-200 bg-gradient-to-b from-[#0B4EA2] via-[#0B4EA2] to-[#0a3f84]">
-              <div className="p-6">
-                <div className="flex items-center justify-center">
-                  <img
-                    src={logoSrc}
-                    alt="Agente Express"
-                    className="h-14 w-auto object-contain"
-                  />
-                </div>
-              </div>
+    <Box
+      sx={{
+        minHeight: "100dvh",
+        display: "grid",
+        placeItems: "center",
+        px: 2,
+        py: 3,
+        bgcolor: "#EEF2F7",
+        backgroundImage:
+          "radial-gradient(900px 400px at 20% 10%, rgba(11,78,162,0.18), transparent 60%), radial-gradient(700px 350px at 85% 70%, rgba(39,174,96,0.14), transparent 55%)",
+      }}
+    >
+      <Paper
+        elevation={10}
+        sx={{
+          width: "100%",
+          maxWidth: 1100,
+          borderRadius: 4,
+          overflow: "hidden",
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "320px 1fr" }, // izquierda más angosta
+          border: "1px solid rgba(15,23,42,0.08)",
+        }}
+      >
+        {/* IZQUIERDA */}
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            flexDirection: "column",
+            justifyContent: "space-between",
+            p: 3,
+            color: "white",
+            background:
+              "linear-gradient(180deg, #0B4EA2 0%, #083B7A 55%, #062F63 100%)",
+          }}
+        >
+          <Box>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+              <Box
+                component="img"
+                src={logo}
+                alt="Agente Express"
+                sx={{ height: 42, width: "auto", filter: "drop-shadow(0 6px 12px rgba(0,0,0,.18))" }}
+              />
+            </Box>
 
-              <div className="px-6 pb-6">
-                <div className="rounded-3xl overflow-hidden bg-white/10 border border-white/15 shadow-sm">
-                  {imagenSrc ? (
-                    <img
-                      src={imagenSrc}
-                      alt="Registro"
-                      className="w-full h-[420px] object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-[420px] flex items-center justify-center text-white/80">
-                      <span className="text-sm">Coloca una imagen en src/assets/registro.jpg</span>
-                    </div>
-                  )}
-                </div>
-              </div>
+            <Typography variant="h6" sx={{ mt: 2.5, fontWeight: 800, letterSpacing: -0.2 }}>
+              Afíliate a AgenteExpress
+            </Typography>
+            <Typography sx={{ mt: 1, opacity: 0.9, fontSize: 13, lineHeight: 1.5 }}>
+              Completa tus datos para habilitar tu cuenta de agente y continuar con el proceso de registro.
+            </Typography>
 
-              <div className="px-6 pb-7">
-                <Button
-                  type="button"
-                  onClick={onVerRequisitos}
-                  className="w-full h-12 rounded-full bg-[#F2C200] hover:bg-[#E4B600] text-slate-900 font-semibold"
-                >
-                  Ver requisitos
-                </Button>
-              </div>
-            </div>
-          </aside>
+            <Box
+              sx={{
+                mt: 2.5,
+                p: 1.5,
+                borderRadius: 2.5,
+                border: "1px solid rgba(255,255,255,.14)",
+                bgcolor: "rgba(255,255,255,.08)",
+              }}
+            >
+              <Typography sx={{ fontSize: 12, opacity: 0.95 }}>
+                Consejo: usa un correo válido, ahí recibirás la confirmación.
+              </Typography>
+            </Box>
+          </Box>
 
-          {/* Contenido Derecha */}
-          <main className="lg:col-span-8">
-            <div className="rounded-[28px] bg-white border border-slate-200 shadow-sm p-6 sm:p-10">
-              {children}
-            </div>
-          </main>
-        </div>
-      </div>
-    </div>
+          <Box>
+            <Button
+              variant="contained"
+              sx={{
+                width: "100%",
+                borderRadius: 2.5,
+                textTransform: "none",
+                fontWeight: 700,
+                bgcolor: "#F5C400",
+                color: "#111827",
+                "&:hover": { bgcolor: "#EAB308" },
+              }}
+              onClick={() => alert("Aquí puedes abrir Requisitos (modal o ruta).")}
+            >
+              Ver requisitos
+            </Button>
+
+            <Typography sx={{ mt: 2, fontSize: 12, opacity: 0.8 }}>
+              © {new Date().getFullYear()} Agente Express
+            </Typography>
+          </Box>
+        </Box>
+
+        {/* DERECHA */}
+        <Box sx={{ p: { xs: 2.5, sm: 3 }, bgcolor: "white" }}>
+          {children}
+        </Box>
+      </Paper>
+    </Box>
   );
 }

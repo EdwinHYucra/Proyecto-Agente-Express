@@ -1,26 +1,34 @@
 import { useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Eye, EyeOff, Loader2, LockKeyhole, Mail } from "lucide-react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
-import AutenticacionLayout from "../components/AutenticacionLayout";
+import {
+  Box,
+  Button,
+  Divider,
+  FormHelperText,
+  IconButton,
+  InputAdornment,
+  Link,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 
-// Shadcn UI
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
-// ✅ Ajusta la ruta según tu proyecto.
-// La idea: el logo estará en src/assets/logo.png
+import AutenticacionLayoutMUI from "../components/AutenticacionLayout";
 import logo from "@/assets/logo.png";
-
-// (opcional) tu servicio real
-// import { iniciarSesion } from "../servicios/autenticacion.api";
 
 type Formulario = {
   correo: string;
   contrasena: string;
 };
+
+const COLOR_AZUL = "#0B4EA2";
 
 export default function IniciarSesionPage() {
   const navigate = useNavigate();
@@ -34,11 +42,17 @@ export default function IniciarSesionPage() {
     contrasena: "",
   });
 
-  const esValido = useMemo(() => {
-    const correoOk = /^\S+@\S+\.\S+$/.test(form.correo.trim());
-    const passOk = form.contrasena.trim().length >= 6;
-    return correoOk && passOk;
-  }, [form.correo, form.contrasena]);
+  const correoValido = useMemo(
+    () => /^\S+@\S+\.\S+$/.test(form.correo.trim()),
+    [form.correo]
+  );
+
+  const passValido = useMemo(
+    () => form.contrasena.trim().length >= 6,
+    [form.contrasena]
+  );
+
+  const esValido = correoValido && passValido;
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,16 +62,9 @@ export default function IniciarSesionPage() {
     setError(null);
 
     try {
-      // ✅ Aquí conectas tu API.
-      // Ejemplo:
-      // const resp = await iniciarSesion({ correo: form.correo, contrasena: form.contrasena });
-      // localStorage.setItem("token", resp.token);
-
-      // Simulación rápida
-      await new Promise((r) => setTimeout(r, 800));
+      // TODO: conectar API real
+      await new Promise((r) => setTimeout(r, 700));
       localStorage.setItem("token", "demo_token");
-
-      // Redirige a dashboard (ajusta a tu ruta real)
       navigate("/dashboard");
     } catch {
       setError("Credenciales incorrectas o error de conexión.");
@@ -67,141 +74,278 @@ export default function IniciarSesionPage() {
   };
 
   return (
-    <AutenticacionLayout logoSrc={logo}>
-      <div className="max-w-md mx-auto">
-        <div className="space-y-2 text-center">
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
-            Inicia sesión
-          </h1>
-          <p className="text-sm text-slate-500">
-            Ingresa tus credenciales para continuar
-          </p>
-        </div>
+    <AutenticacionLayoutMUI>
+      {/* Logo arriba */}
+      <Stack alignItems="center" sx={{ mb: 2 }}>
+        <Box
+          component="img"
+          src={logo}
+          alt="Agente Express"
+          sx={{ height: 76, width: "auto" }}
+        />
+      </Stack>
 
-        <div className="mt-8 rounded-3xl border border-slate-200 shadow-sm bg-white p-6 sm:p-7">
-          <form onSubmit={onSubmit} className="space-y-5">
+      <Stack spacing={1.1} alignItems="center" textAlign="center">
+        <Typography
+          variant="h4"
+          sx={{ fontWeight: 900, letterSpacing: -0.6, color: "#0f172a" }}
+        >
+          Inicia sesión
+        </Typography>
+        <Typography sx={{ color: "rgba(15,23,42,.65)" }}>
+          Ingresa tus credenciales para continuar
+        </Typography>
+      </Stack>
+
+      {/* Card interno del formulario */}
+      <Paper
+        elevation={0}
+        sx={{
+          mt: 3,
+          p: { xs: 2.5, sm: 3 },
+          borderRadius: 6,
+          border: "1px solid rgba(15,23,42,.10)",
+          background: "rgba(255,255,255,.88)",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Mancha interna sutil (dentro del form card) */}
+        <Box
+          aria-hidden
+          sx={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background: `
+              radial-gradient(420px 240px at 15% 15%, rgba(11,78,162,.10) 0%, rgba(11,78,162,0) 60%),
+              radial-gradient(360px 220px at 85% 65%, rgba(16,185,129,.08) 0%, rgba(16,185,129,0) 62%)
+            `,
+          }}
+        />
+
+        <Box component="form" onSubmit={onSubmit} sx={{ position: "relative" }}>
+          <Stack spacing={2.1}>
             {/* Correo */}
-            <div className="space-y-2">
-              <Label htmlFor="correo" className="text-slate-700">
+            <Box>
+              <Typography sx={{ fontWeight: 800, mb: 0.8, color: "#0f172a" }}>
                 Correo
-              </Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input
-                  id="correo"
-                  type="email"
-                  placeholder="tucorreo@dominio.com"
-                  value={form.correo}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setForm((p) => ({ ...p, correo: e.target.value }))
-                  }
-                  className="pl-10 h-11 rounded-2xl"
-                  autoComplete="email"
-                />
-              </div>
-            </div>
+              </Typography>
+
+              <TextField
+                fullWidth
+                placeholder="tucorreo@dominio.com"
+                value={form.correo}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, correo: e.target.value }))
+                }
+                error={form.correo.length > 0 && !correoValido}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <MailOutlineIcon sx={{ color: "rgba(15,23,42,.55)" }} />
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 3,
+                    background: "#fff",
+                  },
+                }}
+              />
+
+              {form.correo.length > 0 && !correoValido && (
+                <FormHelperText sx={{ color: "#dc2626", mt: 0.8 }}>
+                  Ingresa un correo válido.
+                </FormHelperText>
+              )}
+            </Box>
 
             {/* Contraseña */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="contrasena" className="text-slate-700">
+            <Box>
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ mb: 0.8 }}
+              >
+                <Typography sx={{ fontWeight: 800, color: "#0f172a" }}>
                   Contraseña
-                </Label>
+                </Typography>
+
                 <Link
+                  component={RouterLink}
                   to="/recuperar-contrasena"
-                  className="text-xs font-medium text-[#0B4EA2] hover:underline"
+                  underline="hover"
+                  sx={{
+                    fontSize: 13,
+                    fontWeight: 800,
+                    color: COLOR_AZUL,
+                  }}
                 >
                   ¿Olvidaste tu contraseña?
                 </Link>
-              </div>
+              </Stack>
 
-              <div className="relative">
-                <LockKeyhole className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input
-                  id="contrasena"
-                  type={mostrarContrasena ? "text" : "password"}
-                  placeholder="••••••••"
-                  value={form.contrasena}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setForm((p) => ({ ...p, contrasena: e.target.value }))
-                  }
-                  className="pl-10 pr-11 h-11 rounded-2xl"
-                  autoComplete="current-password"
-                />
-                <button
-                  type="button"
-                  onClick={() => setMostrarContrasena((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
-                  aria-label={
-                    mostrarContrasena
-                      ? "Ocultar contraseña"
-                      : "Mostrar contraseña"
-                  }
-                >
-                  {mostrarContrasena ? (
-                    <EyeOff className="h-4 w-4" />
-                  ) : (
-                    <Eye className="h-4 w-4" />
-                  )}
-                </button>
-              </div>
-              <p className="text-[11px] text-slate-500">Mínimo 6 caracteres.</p>
-            </div>
+              <TextField
+                fullWidth
+                type={mostrarContrasena ? "text" : "password"}
+                placeholder="••••••••"
+                value={form.contrasena}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, contrasena: e.target.value }))
+                }
+                error={form.contrasena.length > 0 && !passValido}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LockOutlinedIcon sx={{ color: "rgba(15,23,42,.55)" }} />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setMostrarContrasena((v) => !v)}
+                        edge="end"
+                        aria-label={
+                          mostrarContrasena
+                            ? "Ocultar contraseña"
+                            : "Mostrar contraseña"
+                        }
+                      >
+                        {mostrarContrasena ? (
+                          <VisibilityOffOutlinedIcon />
+                        ) : (
+                          <VisibilityOutlinedIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 3,
+                    background: "#fff",
+                  },
+                }}
+              />
+
+              <FormHelperText sx={{ mt: 0.8, color: "rgba(15,23,42,.60)" }}>
+                Mínimo 6 caracteres.
+              </FormHelperText>
+            </Box>
 
             {/* Error */}
             {error && (
-              <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              <Box
+                sx={{
+                  borderRadius: 3,
+                  border: "1px solid rgba(220,38,38,.25)",
+                  background: "rgba(220,38,38,.06)",
+                  px: 2,
+                  py: 1.4,
+                  color: "#b91c1c",
+                  fontWeight: 700,
+                }}
+              >
                 {error}
-              </div>
+              </Box>
             )}
 
             {/* Botón */}
             <Button
               type="submit"
               disabled={!esValido || cargando}
-              className="w-full h-11 rounded-2xl bg-[#0B4EA2] hover:bg-[#083B7A] text-white font-medium"
+              variant="contained"
+              sx={{
+                height: 52,
+                borderRadius: 999,
+                fontWeight: 900,
+                letterSpacing: 0.2,
+                textTransform: "none",
+                backgroundColor: COLOR_AZUL,
+                boxShadow: "none",
+                "&:hover": { backgroundColor: "#083B7A", boxShadow: "none" },
+                "&:disabled": { backgroundColor: "rgba(15,23,42,.12)" },
+              }}
             >
-              {cargando ? (
-                <span className="inline-flex items-center gap-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  Iniciando...
-                </span>
-              ) : (
-                "Iniciar sesión"
-              )}
+              {cargando ? "Iniciando..." : "Iniciar sesión"}
             </Button>
 
-            <div className="relative py-1">
-              <Separator />
-              <span className="absolute left-1/2 -translate-x-1/2 -top-2 bg-white px-2 text-xs text-slate-400">
+            {/* Separador */}
+            <Box sx={{ position: "relative", py: 0.5 }}>
+              <Divider />
+              <Typography
+                sx={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  px: 1.5,
+                  background: "rgba(255,255,255,.88)",
+                  color: "rgba(15,23,42,.55)",
+                  fontWeight: 900,
+                  fontSize: 12,
+                }}
+              >
                 o
-              </span>
-            </div>
+              </Typography>
+            </Box>
 
+            {/* Registro */}
             <Button
-              type="button"
-              variant="outline"
-              className="w-full h-11 rounded-2xl border-slate-200"
+              variant="outlined"
               onClick={() => navigate("/registro")}
+              sx={{
+                height: 52,
+                borderRadius: 999,
+                fontWeight: 900,
+                textTransform: "none",
+                borderColor: "rgba(11,78,162,.45)",
+                color: COLOR_AZUL,
+                "&:hover": {
+                  borderColor: COLOR_AZUL,
+                  background: "rgba(11,78,162,.06)",
+                },
+              }}
             >
               Registrarse
             </Button>
 
-            <p className="text-center text-xs text-slate-500">
+            <Typography
+              sx={{
+                textAlign: "center",
+                fontSize: 13,
+                color: "rgba(15,23,42,.65)",
+              }}
+            >
               Al continuar, aceptas los{" "}
-              <Link to="/terminos" className="text-[#0B4EA2] hover:underline">
+              <Link
+                component={RouterLink}
+                to="/terminos"
+                underline="hover"
+                sx={{ fontWeight: 900, color: COLOR_AZUL }}
+              >
                 términos y condiciones
               </Link>
               .
-            </p>
-          </form>
-        </div>
+            </Typography>
+          </Stack>
+        </Box>
+      </Paper>
 
-        {/* Microinteracción: tip móvil */}
-        <p className="mt-4 text-center text-xs text-slate-500">
-          Tip: en celular, los campos son más grandes para facilitar el ingreso.
-        </p>
-      </div>
-    </AutenticacionLayout>
+      {/* Tip afuera del card */}
+      <Typography
+        sx={{
+          mt: 2.2,
+          textAlign: "center",
+          fontSize: 13,
+          color: "rgba(15,23,42,.60)",
+        }}
+      >
+        Tip: en celular, los campos son más grandes para facilitar el ingreso.
+      </Typography>
+    </AutenticacionLayoutMUI>
   );
 }
