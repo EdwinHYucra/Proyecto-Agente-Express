@@ -1,64 +1,68 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Box, Typography } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { useNavigate } from "react-router-dom";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  Typography,
+  Stack,
+} from "@mui/material";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
 type Props = {
   open: boolean;
   onClose: () => void;
+  onGoLogin: () => void;
 };
 
-export default function CuentaCreadaDialog({ open, onClose }: Props) {
-  const navigate = useNavigate();
-
-  const irLogin = () => {
+export default function CuentaCreadaDialog({ open, onClose, onGoLogin }: Props) {
+  const handleAceptar = () => {
     onClose();
-    navigate("/login");
+    onGoLogin(); // ambos caminos van a login (como pediste)
   };
 
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleAceptar}
       maxWidth="sm"
       fullWidth
-      PaperProps={{
-        sx: { borderRadius: 4, p: 0.5 },
-      }}
+      PaperProps={{ sx: { borderRadius: 4 } }}
     >
-      <DialogTitle sx={{ fontWeight: 900, pb: 1 }}>
+      <DialogTitle sx={{ fontWeight: 950 }}>
         ¡Registro exitoso!
       </DialogTitle>
 
-      <DialogContent sx={{ pt: 1.5 }}>
-        <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
-          <CheckCircleIcon sx={{ fontSize: 44, color: "#16A34A", mt: 0.2 }} />
-          <Box>
-            <Typography sx={{ fontWeight: 800, mb: 0.5 }}>
+      <DialogContent>
+        <Stack direction="row" spacing={2} sx={{ mt: 1 }}>
+          <CheckCircleRoundedIcon color="success" sx={{ fontSize: 44, mt: 0.2 }} />
+          <Stack spacing={0.8}>
+            <Typography sx={{ fontWeight: 800 }}>
               Tu cuenta fue creada con éxito.
             </Typography>
-
-            <Typography sx={{ color: "text.secondary", lineHeight: 1.6 }}>
-              Revisa tu correo para confirmar el registro. Si no lo ves, revisa “Correo no deseado”.
-              <br />
+            <Typography sx={{ color: "text.secondary" }}>
+              Revisa tu correo para confirmar el registro. Si no lo ves, revisa
+              “Correo no deseado”.
+            </Typography>
+            <Typography sx={{ color: "text.secondary" }}>
               Gracias por elegirnos, <b>Agente Express</b>.
             </Typography>
-          </Box>
-        </Box>
+          </Stack>
+        </Stack>
       </DialogContent>
 
-      <DialogActions sx={{ px: 3, pb: 2 }}>
-        {/* ✅ Un solo botón (como pediste) */}
+      <DialogActions sx={{ p: 2.2 }}>
         <Button
-          onClick={irLogin}
           variant="contained"
+          onClick={handleAceptar}
           sx={{
             borderRadius: 999,
-            px: 3,
+            px: 3.2,
             textTransform: "none",
-            fontWeight: 800,
+            fontWeight: 950,
           }}
         >
-          Ir a iniciar sesión
+          Aceptar
         </Button>
       </DialogActions>
     </Dialog>

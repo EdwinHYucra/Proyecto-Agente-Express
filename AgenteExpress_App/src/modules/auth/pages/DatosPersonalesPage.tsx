@@ -13,8 +13,9 @@ import {
   Button,
   FormHelperText,
   Divider,
+  Paper,
 } from "@mui/material";
-import Grid from "@mui/material/Grid2";
+import type { SelectChangeEvent } from "@mui/material/Select";
 
 import RegistroLayout from "../components/RegistroLayout";
 import CuentaCreadaDialog from "../components/CuentaCreadaDialog";
@@ -36,49 +37,52 @@ type FormState = {
   distrito: string;
 };
 
+type Touched = Partial<Record<keyof FormState, boolean>>;
+
 export default function DatosPersonalesPage() {
   const navigate = useNavigate();
 
   const [openDialog, setOpenDialog] = useState(false);
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [touched, setTouched] = useState<Touched>({});
 
   const [form, setForm] = useState<FormState>({
     nombres: "",
     apellidoPaterno: "",
     apellidoMaterno: "",
     telefono: "",
-
     sinCorreo: false,
     sinRuc: false,
-
     correo: "",
     rubro: "",
-
     departamento: "",
     provincia: "",
     distrito: "",
   });
 
-  // Simples datos demo (luego lo conectas a tu ubigeo real)
+  // DEMO data (luego lo conectas a ubigeo real)
   const rubros = ["Bodega", "Farmacia", "Restaurante", "Servicios", "Otro"];
   const departamentos = ["Arequipa", "Lima", "Cusco"];
   const provincias = ["Arequipa", "Caylloma", "Camaná"];
   const distritos = ["Cayma", "Cerro Colorado", "Yanahuara"];
 
-  const set = (k: keyof FormState, v: any) => setForm((p) => ({ ...p, [k]: v }));
+  const set = <K extends keyof FormState>(k: K, v: FormState[K]) =>
+    setForm((p) => ({ ...p, [k]: v }));
+
+  const markTouched = (k: keyof FormState) =>
+    setTouched((p) => ({ ...p, [k]: true }));
 
   const correoValido = (email: string) => /^\S+@\S+\.\S+$/.test(email.trim());
 
   const errors = useMemo(() => {
-    const e: Record<string, string> = {};
+    const e: Partial<Record<keyof FormState | "sinCorreoMsg", string>> = {};
 
     if (!form.nombres.trim()) e.nombres = "Requerido.";
     if (!form.apellidoPaterno.trim()) e.apellidoPaterno = "Requerido.";
     if (!form.telefono.trim()) e.telefono = "Requerido.";
 
-    // ✅ Correo es principal: si marca sinCorreo, NO puede continuar
+    // correo obligatorio (si marca sinCorreo, bloquear)
     if (form.sinCorreo) {
-      e.sinCorreo = "El correo es obligatorio para completar el registro.";
+      e.sinCorreoMsg = "El correo es obligatorio para completar el registro.";
     } else {
       if (!form.correo.trim()) e.correo = "Requerido.";
       else if (!correoValido(form.correo)) e.correo = "Ingresa un correo válido.";
@@ -95,11 +99,7 @@ export default function DatosPersonalesPage() {
 
   const canSubmit = useMemo(() => Object.keys(errors).length === 0, [errors]);
 
-  const marcarTouched = (key: string) =>
-    setTouched((p) => ({ ...p, [key]: true }));
-
-  const onContinuar = () => {
-    // fuerza “touched” en campos clave
+  const forceTouchedMain = () => {
     setTouched({
       nombres: true,
       apellidoPaterno: true,
@@ -111,18 +111,20 @@ export default function DatosPersonalesPage() {
       provincia: true,
       distrito: true,
     });
+  };
 
+  const onContinuar = () => {
+    forceTouchedMain();
     if (!canSubmit) return;
 
-    // aquí luego llamas a tu API para crear la cuenta
-    // por ahora: abre modal de éxito
+    // TODO: llamar API para crear cuenta
     setOpenDialog(true);
   };
 
   return (
     <RegistroLayout>
       <Box sx={{ maxWidth: 860, mx: "auto" }}>
-        <Typography variant="h4" sx={{ fontWeight: 900, letterSpacing: -0.4 }}>
+        <Typography variant="h4" sx={{ fontWeight: 950, letterSpacing: -0.6 }}>
           Regístrate y sé agente Express
         </Typography>
 
@@ -132,72 +134,96 @@ export default function DatosPersonalesPage() {
 
         <Divider sx={{ my: 2.2 }} />
 
-        {/* Datos personales */}
-        <Grid container spacing={1.8}>
-          <Grid item xs={12} md={4}>
+        {/* Panel form (más compacto y pro) */}
+        <Paper
+          variant="outlined"
+          sx={{
+            p: { xs: 2, sm: 2.2 },
+            borderRadius: 4,
+            background:
+              "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(250,252,255,1) 100%)",
+          }}
+        >
+          {/* Datos personales */}
+          <Typography sx={{ fontWeight: 950, mb: 1.2 }}>
+            Datos personales
+          </Typography>
+
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                sm: "1fr 1fr",
+                md: "repeat(3, 1fr)",
+              },
+              gap: 1.6,
+            }}
+          >
             <TextField
-              fullWidth
               size="small"
               label="Nombres *"
               value={form.nombres}
               onChange={(e) => set("nombres", e.target.value)}
-              onBlur={() => marcarTouched("nombres")}
+              onBlur={() => markTouched("nombres")}
               error={!!(touched.nombres && errors.nombres)}
               helperText={touched.nombres ? errors.nombres : " "}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <TextField
               fullWidth
+            />
+
+            <TextField
               size="small"
               label="Apellido paterno *"
               value={form.apellidoPaterno}
               onChange={(e) => set("apellidoPaterno", e.target.value)}
-              onBlur={() => marcarTouched("apellidoPaterno")}
+              onBlur={() => markTouched("apellidoPaterno")}
               error={!!(touched.apellidoPaterno && errors.apellidoPaterno)}
               helperText={touched.apellidoPaterno ? errors.apellidoPaterno : " "}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <TextField
               fullWidth
+            />
+
+            <TextField
               size="small"
               label="Apellido materno"
               value={form.apellidoMaterno}
               onChange={(e) => set("apellidoMaterno", e.target.value)}
               helperText=" "
-            />
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <TextField
               fullWidth
+            />
+          </Box>
+
+          {/* teléfono: 1 columna, pero alineado */}
+          <Box sx={{ mt: 0.4, maxWidth: { xs: "100%", sm: 360 } }}>
+            <TextField
               size="small"
               label="Teléfono móvil *"
               value={form.telefono}
               onChange={(e) => set("telefono", e.target.value)}
-              onBlur={() => marcarTouched("telefono")}
+              onBlur={() => markTouched("telefono")}
               error={!!(touched.telefono && errors.telefono)}
               helperText={touched.telefono ? errors.telefono : " "}
+              fullWidth
             />
-          </Grid>
-        </Grid>
+          </Box>
 
-        {/* Requisitos */}
-        <Box sx={{ mt: 1 }}>
-          <Typography sx={{ fontWeight: 800, mt: 1.2 }}>
-            Indicar si no cuenta con alguno de estos requisitos:
+          <Divider sx={{ my: 1.6 }} />
+
+          {/* Requisitos */}
+          <Typography sx={{ fontWeight: 950, mb: 0.8 }}>
+            Requisitos
           </Typography>
 
-          <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap", mt: 0.6 }}>
+          <Typography sx={{ color: "text.secondary", fontSize: 13, mb: 1 }}>
+            Indica si no cuentas con alguno de estos requisitos:
+          </Typography>
+
+          <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap", mb: 0.6 }}>
             <FormControlLabel
               control={
                 <Checkbox
                   checked={form.sinCorreo}
                   onChange={(e) => set("sinCorreo", e.target.checked)}
-                  onBlur={() => marcarTouched("sinCorreo")}
+                  onBlur={() => markTouched("sinCorreo")}
                 />
               }
               label="No tengo correo electrónico"
@@ -214,24 +240,28 @@ export default function DatosPersonalesPage() {
             />
           </Box>
 
-          {/* error principal si marca sinCorreo */}
-          {touched.sinCorreo && errors.sinCorreo && (
-            <Typography sx={{ mt: 0.5, color: "error.main", fontSize: 12 }}>
-              {errors.sinCorreo}
+          {/* aviso fuerte (bloquea continuar) */}
+          {touched.sinCorreo && errors.sinCorreoMsg && (
+            <Typography sx={{ color: "error.main", fontSize: 12.5, mb: 1 }}>
+              {errors.sinCorreoMsg}
             </Typography>
           )}
-        </Box>
 
-        {/* Correo + Rubro */}
-        <Grid container spacing={1.8} sx={{ mt: 0.6 }}>
-          <Grid item xs={12} md={6}>
+          {/* Correo + Rubro */}
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gap: 1.6,
+              mt: 0.6,
+            }}
+          >
             <TextField
-              fullWidth
               size="small"
               label="Correo *"
               value={form.correo}
               onChange={(e) => set("correo", e.target.value)}
-              onBlur={() => marcarTouched("correo")}
+              onBlur={() => markTouched("correo")}
               disabled={form.sinCorreo}
               error={!!(touched.correo && errors.correo)}
               helperText={
@@ -241,21 +271,26 @@ export default function DatosPersonalesPage() {
                   ? errors.correo
                   : " "
               }
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <FormControl
               fullWidth
+            />
+
+            <FormControl
               size="small"
               error={!!(touched.rubro && errors.rubro)}
+              fullWidth
+              sx={{
+                minWidth: 240, // evita que se “contraiga”
+              }}
             >
-              <InputLabel>Rubro / Tipo de negocio *</InputLabel>
+              <InputLabel id="rubro-label">Rubro / Tipo de negocio *</InputLabel>
               <Select
+                labelId="rubro-label"
                 label="Rubro / Tipo de negocio *"
                 value={form.rubro}
-                onChange={(e) => set("rubro", e.target.value)}
-                onBlur={() => marcarTouched("rubro")}
+                onChange={(e: SelectChangeEvent) => set("rubro", e.target.value as string)}
+                onBlur={() => markTouched("rubro")}
+                fullWidth
+                MenuProps={{ PaperProps: { style: { maxHeight: 320 } } }}
               >
                 {rubros.map((r) => (
                   <MenuItem key={r} value={r}>
@@ -267,27 +302,40 @@ export default function DatosPersonalesPage() {
                 {touched.rubro ? errors.rubro || " " : " "}
               </FormHelperText>
             </FormControl>
-          </Grid>
-        </Grid>
+          </Box>
 
-        {/* Ubicación */}
-        <Typography sx={{ fontWeight: 900, mt: 1.6 }}>
-          Ubicación de tu local:
-        </Typography>
+          <Divider sx={{ my: 1.6 }} />
 
-        <Grid container spacing={1.8} sx={{ mt: 0.4 }}>
-          <Grid item xs={12} md={4}>
+          {/* Ubicación */}
+          <Typography sx={{ fontWeight: 950, mb: 1 }}>
+            Ubicación de tu local
+          </Typography>
+
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                sm: "1fr 1fr",
+                md: "repeat(3, 1fr)",
+              },
+              gap: 1.6,
+            }}
+          >
             <FormControl
-              fullWidth
               size="small"
               error={!!(touched.departamento && errors.departamento)}
+              fullWidth
+              sx={{ minWidth: 220 }}
             >
-              <InputLabel>Departamento *</InputLabel>
+              <InputLabel id="dep-label">Departamento *</InputLabel>
               <Select
+                labelId="dep-label"
                 label="Departamento *"
                 value={form.departamento}
-                onChange={(e) => set("departamento", e.target.value)}
-                onBlur={() => marcarTouched("departamento")}
+                onChange={(e: SelectChangeEvent) => set("departamento", e.target.value as string)}
+                onBlur={() =>_toggleTouched(markTouched, "departamento")}
+                fullWidth
               >
                 {departamentos.map((d) => (
                   <MenuItem key={d} value={d}>
@@ -299,20 +347,21 @@ export default function DatosPersonalesPage() {
                 {touched.departamento ? errors.departamento || " " : " "}
               </FormHelperText>
             </FormControl>
-          </Grid>
 
-          <Grid item xs={12} md={4}>
             <FormControl
-              fullWidth
               size="small"
               error={!!(touched.provincia && errors.provincia)}
+              fullWidth
+              sx={{ minWidth: 220 }}
             >
-              <InputLabel>Provincia *</InputLabel>
+              <InputLabel id="prov-label">Provincia *</InputLabel>
               <Select
+                labelId="prov-label"
                 label="Provincia *"
                 value={form.provincia}
-                onChange={(e) => set("provincia", e.target.value)}
-                onBlur={() => marcarTouched("provincia")}
+                onChange={(e: SelectChangeEvent) => set("provincia", e.target.value as string)}
+                onBlur={() => markTouched("provincia")}
+                fullWidth
               >
                 {provincias.map((p) => (
                   <MenuItem key={p} value={p}>
@@ -324,20 +373,21 @@ export default function DatosPersonalesPage() {
                 {touched.provincia ? errors.provincia || " " : " "}
               </FormHelperText>
             </FormControl>
-          </Grid>
 
-          <Grid item xs={12} md={4}>
             <FormControl
-              fullWidth
               size="small"
               error={!!(touched.distrito && errors.distrito)}
+              fullWidth
+              sx={{ minWidth: 220 }}
             >
-              <InputLabel>Distrito *</InputLabel>
+              <InputLabel id="dist-label">Distrito *</InputLabel>
               <Select
+                labelId="dist-label"
                 label="Distrito *"
                 value={form.distrito}
-                onChange={(e) => set("distrito", e.target.value)}
-                onBlur={() => marcarTouched("distrito")}
+                onChange={(e: SelectChangeEvent) => set("distrito", e.target.value as string)}
+                onBlur={() => markTouched("distrito")}
+                fullWidth
               >
                 {distritos.map((d) => (
                   <MenuItem key={d} value={d}>
@@ -349,42 +399,57 @@ export default function DatosPersonalesPage() {
                 {touched.distrito ? errors.distrito || " " : " "}
               </FormHelperText>
             </FormControl>
-          </Grid>
-        </Grid>
+          </Box>
 
-        {/* Acciones */}
-        <Box sx={{ display: "flex", gap: 1.5, mt: 2.2, alignItems: "center" }}>
-          <Button
-            variant="contained"
-            onClick={onContinuar}
-            disabled={!canSubmit}
-            sx={{
-              borderRadius: 999,
-              px: 4,
-              py: 1.1,
-              textTransform: "none",
-              fontWeight: 900,
-            }}
-          >
-            Continuar
-          </Button>
+          {/* Acciones */}
+          <Box sx={{ display: "flex", gap: 1.4, mt: 2.2, alignItems: "center" }}>
+            <Button
+              variant="contained"
+              onClick={onContinuar}
+              disabled={!canSubmit}
+              sx={{
+                borderRadius: 999,
+                px: 4,
+                py: 1.15,
+                textTransform: "none",
+                fontWeight: 950,
+              }}
+            >
+              Continuar
+            </Button>
 
-          <Button
-            variant="text"
-            onClick={() => navigate("/login")}
-            sx={{
-              borderRadius: 999,
-              px: 2,
-              textTransform: "none",
-              fontWeight: 800,
-            }}
-          >
-            Salir
-          </Button>
-        </Box>
+            <Button
+              variant="text"
+              onClick={() => navigate("/login")}
+              sx={{
+                borderRadius: 999,
+                px: 2,
+                textTransform: "none",
+                fontWeight: 900,
+              }}
+            >
+              Salir
+            </Button>
+          </Box>
+        </Paper>
 
-        <CuentaCreadaDialog open={openDialog} onClose={() => setOpenDialog(false)} />
+        <CuentaCreadaDialog
+          open={openDialog}
+          onClose={() => setOpenDialog(false)}
+          onGoLogin={() => navigate("/login")}
+        />
       </Box>
     </RegistroLayout>
   );
+}
+
+/**
+ * Helper mínimo para evitar warnings de lint si quieres.
+ * Puedes borrarlo y usar markTouched directo.
+ */
+function _toggleTouched(
+  mark: (k: any) => void,
+  key: any
+) {
+  mark(key);
 }
