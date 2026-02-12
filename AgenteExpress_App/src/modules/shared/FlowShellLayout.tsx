@@ -1,19 +1,15 @@
-import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import HeaderSistema from "./HeaderSistema";
 import FooterSistema from "./FooterSistema";
-import SideNav from "./SideNav";
 import logo from "../../assets/logo.png";
 
-type Props = { madeBy?: string };
+type Props = {
+  madeBy?: string;
+};
 
-export default function AppShellLayout({ madeBy = "Edwin Eulogio" }: Props) {
+export default function FlowShellLayout({ madeBy = "Edwin Eulogio" }: Props) {
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
-
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   const onLogout = () => {
     localStorage.removeItem("token");
@@ -24,11 +20,14 @@ export default function AppShellLayout({ madeBy = "Edwin Eulogio" }: Props) {
     <Box
       sx={{
         minHeight: "100dvh",
+        display: "flex",
+        flexDirection: "column",
         bgcolor: "#EEF3F9",
         position: "relative",
+        overflow: "hidden",
         "&::before": {
           content: '""',
-          position: "fixed", // ✅ fijo al viewport (no rompe sticky)
+          position: "absolute",
           inset: 0,
           background:
             "radial-gradient(900px 380px at 12% 8%, rgba(11,78,162,.16), transparent 60%)," +
@@ -38,41 +37,27 @@ export default function AppShellLayout({ madeBy = "Edwin Eulogio" }: Props) {
         },
       }}
     >
-      {/* Header siempre visible */}
       <HeaderSistema
         logoSrc={logo}
         codigoAgente="CGDT-170499"
         nombreUsuario="Luis"
         onLogout={onLogout}
-        showMenuButton={!isMdUp}
-        onOpenMenu={() => setMobileOpen(true)}
+        // ✅ SIN menú lateral en flujo (no pasar showMenuButton/onOpenMenu)
       />
 
-      {/* Zona principal: SideNav + contenido */}
       <Box
         sx={{
-          display: "flex",
-          alignItems: "stretch",
+          flex: 1,
+          px: { xs: 2, sm: 2.5, md: 3 },
+          py: { xs: 2.2, md: 3 },
           position: "relative",
         }}
       >
-        <SideNav mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
-
-        <Box
-          sx={{
-            flex: 1,
-            minWidth: 0,
-            px: { xs: 2, sm: 2.5, md: 3 },
-            py: { xs: 2.2, md: 3 },
-          }}
-        >
-          <Box sx={{ maxWidth: 1200, mx: "auto" }}>
-            <Outlet />
-          </Box>
+        <Box sx={{ maxWidth: 1200, mx: "auto" }}>
+          <Outlet />
         </Box>
       </Box>
 
-      {/* Footer NO sticky: aparece al final normal */}
       <FooterSistema madeBy={madeBy} />
     </Box>
   );

@@ -9,12 +9,17 @@ import {
   Tooltip,
 } from "@mui/material";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 
 type Props = {
   logoSrc: string;
   codigoAgente: string;
   nombreUsuario: string;
   onLogout: () => void;
+
+  // ✅ nuevo (para mobile drawer)
+  showMenuButton?: boolean;
+  onOpenMenu?: () => void;
 };
 
 export default function HeaderSistema({
@@ -22,6 +27,8 @@ export default function HeaderSistema({
   codigoAgente,
   nombreUsuario,
   onLogout,
+  showMenuButton = false,
+  onOpenMenu,
 }: Props) {
   return (
     <AppBar
@@ -30,28 +37,40 @@ export default function HeaderSistema({
       sx={{
         bgcolor: "#0B4EA2",
         borderBottom: "1px solid rgba(255,255,255,.12)",
+        zIndex: (t) => t.zIndex.drawer + 1, // ✅ header manda por encima
       }}
     >
       <Toolbar
         sx={{
           minHeight: { xs: 64, md: 72 },
-          px: { xs: 1.5, md: 2.5 },
+          px: { xs: 1, md: 2.5 },
           display: "flex",
-          gap: 1.5,
+          gap: 1.2,
         }}
       >
-        {/* Izquierda: logo + nombre */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.2, minWidth: 0 }}>
+        {/* Izquierda: botón menú (mobile) + logo */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1, minWidth: 0 }}>
+          {showMenuButton && (
+            <IconButton
+              onClick={onOpenMenu}
+              sx={{ color: "white" }}
+              aria-label="Abrir menú"
+            >
+              <MenuRoundedIcon />
+            </IconButton>
+          )}
+
           <Box
             component="img"
             src={logoSrc}
             alt="Agente Express"
             sx={{
-              height: { xs: 30, md: 34 },
+              height: { xs: 28, md: 34 },
               width: "auto",
               objectFit: "contain",
             }}
           />
+
           <Box sx={{ display: { xs: "none", sm: "block" }, minWidth: 0 }}>
             <Typography sx={{ color: "white", fontWeight: 900, lineHeight: 1.1 }}>
               Agente Multibanco
@@ -62,8 +81,8 @@ export default function HeaderSistema({
           </Box>
         </Box>
 
-        {/* Centro: chip código (se adapta) */}
-        <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
+        {/* Centro: código */}
+        <Box sx={{ flex: 1, display: "flex", justifyContent: "center", minWidth: 0 }}>
           <Chip
             label={`Código de Agente: ${codigoAgente}`}
             sx={{
@@ -82,9 +101,15 @@ export default function HeaderSistema({
           />
         </Box>
 
-        {/* Derecha: usuario + logout */}
+        {/* Derecha */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <Typography sx={{ color: "rgba(255,255,255,.92)", fontWeight: 800, display: { xs: "none", md: "block" } }}>
+          <Typography
+            sx={{
+              color: "rgba(255,255,255,.92)",
+              fontWeight: 800,
+              display: { xs: "none", md: "block" },
+            }}
+          >
             Bienvenido: {nombreUsuario}
           </Typography>
 
